@@ -6,6 +6,7 @@
   "dependencies": {
     "serial-modbus-master": "*",
     "serial-m230-master": "*",
+    "serial-lis200-master": "*",
     "influx": "4",
     "express":"4",
     "express-session":"1",
