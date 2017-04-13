@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <rect
+            width="267"
+            height="150"
+            x="0"
+            y="0"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1"/>
+    <text
+            x="8"
+            y="20"
+            data-eval="me.text(neuron.name);"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;">name</text>
+
+//Стандартный объем
+    <rect   width="255"
+            height="30"
+            x="5"
+            y="50"
+            rx="10"
+            ry="10"
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+    <rect
+            width="255"
+            height="50"
+            x="5"
+            y="30"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+    <text
+            x="127.5"
+            y="41"
+            text-anchor="middle" alignment-baseline="middle"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:12pt"
+            >Стандартный объем</text>
+    <text
+            x="127.5"
+            y="68"
+            data-tag="vC"
+            text-anchor="middle" alignment-baseline="middle"
+            style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:20pt">11</text>
+
+//Рабочий объем
+
+    <rect
+            width="125"
+            height="17"
+
+            x="5"
+            y="95"
+            rx="10"
+            ry="10"
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+    <rect
+            width="125"
+            height="30"
+
+            x="5"
+            y="82"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+    <text
+            x="70"
+            y="90"
+
+            text-anchor="middle" alignment-baseline="middle"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:8pt"
+            >Рабочий объем</text>
+    <text
+            x="70"
+            y="105"
+            data-tag="v"
+            text-anchor="middle" alignment-baseline="middle"
+            style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt">11</text>
+
+//Температура газа
+    <rect
+            width="125"
+            height="17"
+            x="135"
+            y="95"
+            rx="10"
+            ry="10"
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+    <rect
+            width="125"
+            height="30"
+            x="135"
+            y="82"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+    <text
+            x="195"
+            y="90"
+
+            text-anchor="middle" alignment-baseline="middle"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:8pt"
+            >Температура газа</text>
+    <text
+            x="195"
+            y="105"
+            data-tag="t"
+            text-anchor="middle" alignment-baseline="middle"
+            style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt">11</text>
+
+//Подстановочное значение давления
+
+    <rect   width="255"
+            height="17"
+            x="5"
+            y="129"
+            rx="10"
+            ry="10"
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+    <rect
+            width="255"
+            height="32"
+            x="5"
+            y="114"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+    <text
+            x="127.5"
+            y="123"
+            text-anchor="middle" alignment-baseline="middle"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:8pt"
+            >Подстановочное значение давления</text>
+    <text
+            x="127.5"
+            y="139"
+            data-tag="pN"
+            text-anchor="middle" alignment-baseline="middle"
+            style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt">кПа</text>
+
+</svg>

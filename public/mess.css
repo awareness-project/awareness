@@ -1,0 +1,72 @@
+#tabs-events{
+    display: flex;
+    flex-flow: column;
+    /*overflow: hidden;
+    position: absolute;*/
+    padding-bottom: 0px;
+}
+
+.box .rowHeader {
+    flex: 0 1 auto;
+    /* The above is shorthand for:
+    flex-grow: 0,
+    flex-shrink: 1,
+    flex-basis: auto
+    */
+}
+
+.box .rowContent {
+    padding-top: 5px;
+    flex: 1 1 auto;
+}
+
+#tableHolder>div {
+    /*owerflow: hidden;
+    position: absolute;*/
+    /*height: 100px;
+    width: 100px;*/
+}
+
+.box .rowFooter {
+    /*flex: 0 1 40px;*/
+}
+
+
+.ui-widget-content .messClass_a_c td {
+    color: black;
+    font-weight: bold !important;
+    background-color: rgba(255, 0, 0, 0.70);
+//background-image: none;
+}
+.ui-widget-content .messClass_a_g td{
+    color: black;
+    font-weight: bold !important;
+    background-color: rgba(255, 0, 0, 0.30);
+}
+.ui-widget-content .messClass_w_c td {
+    color: black;
+    font-weight: bold !important;
+    background-color: rgba(255, 255, 0, 0.70);
+}
+.ui-widget-content .messClass_w_g td{
+    color: black;
+    font-weight: bold !important;
+    background-color: rgba(255, 255, 0, 0.30);
+}
+.ui-widget-content .messClass_i_c td {
+    color: black;
+    font-weight: bold !important;
+    background-color: rgba(0, 255, 0, 0.70);
+}
+.ui-widget-content .messClass_i_g td{
+    color: black;
+    font-weight: bold !important;
+    background-color: rgba(0, 255, 0, 0.30);
+}
+
+.tfsel{
+    background-color: #9befb0;
+}
+.upsel{
+    background-color: #9befb0;
+}

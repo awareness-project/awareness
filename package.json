@@ -1,0 +1,28 @@
+{
+  "name": "awareness",
+  "version": "0.0.1",
+  "description": "SCADA-like application",
+  "main": "index.js",
+  "dependencies": {
+    "serial-modbus-master": "*",
+    "serial-m230-master": "*",
+    "influx": "4",
+    "express":"4",
+    "express-session":"1",
+    "node-uuid":"*",
+    "body-parser":"*",
+    "http-proxy":"*",
+    "xml2js":"*",
+    "fsm":"AutomationEngineer/fsm",
+    "tcp-resource":"AutomationEngineer/tcp-resource"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "scada",
+    "plc"
+  ],
+  "author": "Victor Kulikov",
+  "license": "MIT"
+}

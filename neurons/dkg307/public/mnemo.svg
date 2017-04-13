@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <rect
+            width="267"
+            height="153"
+            x="0"
+            y="0"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1"/>
+    <text
+            x="8"
+            y="20"
+            data-eval="me.text(neuron.name);"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;">name</text>
+
+
+//HOME
+<g              transform="translate(155,5) scale(0.9,0.9)">
+                <rect style="fill:none" width="30" height="30"/>
+                <path style="fill:#ffffff;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                      d="M46.2,2.8c-0.1-1-0.9-1.8-1.8-1.8h-5.3c-1,0-1.8,0.7-1.8,1.7L34,37V23h-2v-7l-15,7h-1v-6L1,25v24h48L46.2,2.8z"/>
+
+                <rect x="7" y="27" width="3" height="5"/>
+                <rect x="16" y="27" width="3" height="5"/>
+                <rect x="25" y="27" width="3" height="5"/>
+                <rect x="7" y="36" width="3" height="5"/>
+                <rect x="16" y="36" width="3" height="5"/>
+                <rect x="25" y="36" width="3" height="5"/>
+
+</g>
+
+//genset: 'Параметры резервного электропитания'
+<g               transform="translate(70,5) scale(0.9,0.9)" class="hmiLamp">
+                <path    style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                         d=""
+                         data-eval="me.attr('d', (neuron.children.genset.children.c.value==0)?'M33,60 70,60 M70,50 80,60 97,60':'M33,60 70,60 M70,60 80,60 97,60');"
+                         data-tag="genset/c">
+                </path>
+                <circle  r="8" cx= "25" cy="60"  data-tag="genset/c"/>
+                <circle  r="8" cx="105" cy="60" data-tag="genset/c"/>
+
+</g>
+
+//mains: 'Параметры основного электропитания'
+<g              transform="translate(160,5) scale(0.9,0.9)" class="hmiLamp">
+                <path    style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                         d=""
+                         data-eval="me.attr('d', (neuron.children.mains.children.c.value==0)?'M33,60 60,60 70,50 M70,60 97,60':'M33,60 60,60 70,60  M70,60 97,60');"
+                         data-tag="mains/c">
+                </path>
+
+                <circle  r="8" cx="25" cy="60"   data-tag="mains/c"/>
+                <circle  r="8" cx="105" cy="60"  data-tag="mains/c"/>
+
+</g>
+
+
+
+//ЛЭП
+<g              transform="translate(225,3) scale(0.09,0.09)">
+                <rect x="119.471" y="470.479" fill="#ffffff" width="273.057" height="39.521"/>
+                <polygon fill="#ffffff" points="264.58,2 247.769,2 247.665,2.016 319.903,479.813 336.442,477.312"/>
+                <polygon fill="#ffffff" points="247.42,2 175.558,477.312 192.097,479.813 264.335,2.016 264.231,2"/>
+                <path fill="#ffffff" d="M341.403,191.608l47.308,46.707H123.289l47.308-46.707H341.403 M345.828,180.83h-4.424H170.597h-4.424
+					l-3.148,3.108l-47.308,46.707L97.03,249.094h26.259h265.423h26.259l-18.686-18.449l-47.308-46.707L345.828,180.83
+					L345.828,180.83z"/>
+                <polygon fill="#ffffff" points="158.47,245.27 158.47,191.609 163.859,191.609 163.859,231.36 204.676,186.588 222.71,232.75
+					256.269,186.664 282.782,232.839 308.481,186.659 341.961,231.55 348.171,191.199 353.498,192.02 345.329,245.081
+					309.139,196.559 282.855,243.792 255.732,196.554 221.273,243.881 202.813,196.63"/>
+                <path fill="#ffffff" d="M316.922,86.31l33.747,33.318H161.332l33.747-33.318H316.922 M320.078,78.621h-3.156H195.078h-3.156
+					l-2.246,2.217l-33.747,33.318l-13.329,13.16h18.731h189.336H369.4l-13.329-13.16l-33.747-33.318L320.078,78.621L320.078,78.621z"/>
+                <polygon fill="#ffffff" points="186.428,124.589 186.428,86.31 190.272,86.31 190.272,114.666 219.389,82.729 232.253,115.658
+					256.192,82.783 275.104,115.721 293.437,82.779 317.319,114.802 321.75,86.017 325.549,86.603 319.722,124.454 293.906,89.841
+					275.157,123.534 255.809,89.837 231.228,123.598 218.06,89.892"/>
+                <rect x="376.351" y="249.094" fill="#ffffff" width="13.473" height="15.943"/>
+                <rect x="122.176" y="249.094" fill="#ffffff" width="13.473" height="15.943"/>
+                <rect x="343.945" y="127.317" fill="#ffffff" width="9.552" height="11.304"/>
+                <rect x="158.502" y="127.019" fill="#ffffff" width="9.552" height="11.304"/>
+                <path fill="##ffffff" d="M193.508,470.479"/>
+                <polygon fill="#ffffff" points="197.11,474.487 189.905,466.472 298.178,369.109 208.22,314.624 279.742,249.869
+				231.975,174.216 261.997,124.531 271.224,130.104 244.643,174.089 293.694,251.774 226.183,312.903 316.183,367.415"/>
+
+</g>
+//Generator
+<g            transform="translate(65,10) scale(0.60,0.60)">
+        <path fill="#ffffff" d="M0.171,17.366v40.388h92.394V17.366H0.171z M54.717,19.175h22.818v16.829H54.717V19.175z M40.805,51.582H5.968v-3.227H4.465
+              v-3.043h1.503V30.789H4.665v-3.043h1.303v-3.227h34.837V51.582z M78.435,52.589H53.606V38.021h24.828V52.589z"/>
+        <path fill="#ffffff" d="M66.135,23.135c-0.812,0-1.472,0.659-1.472,1.472h2.944C67.607,23.794,66.948,23.135,66.135,23.135z"/>
+        <path fill="#ffffff" d="M55.501,19.959v15.26h21.25v-15.26H55.501z M62.49,25.343h-4.707v-3.637h4.707V25.343z M68.479,25.343h-4.706v-3.637h4.706
+              V25.343z M74.47,25.343h-4.706v-3.637h4.706V25.343z"/>
+        <path fill="#ffffff" d="M72.116,23.135c-0.813,0-1.473,0.659-1.473,1.472h2.945C73.589,23.794,72.93,23.135,72.116,23.135z"/>
+        <path fill="#ffffff" d="M60.146,23.135c-0.813,0-1.473,0.659-1.473,1.472h2.945C61.618,23.794,60.959,23.135,60.146,23.135z"/>
+        <path fill="#ffffff" d="M77.65,38.805h-23.26v13h23.26V38.805z M68.845,41.698h-4.703v-1.66h4.703V41.698z"/>
+        <path fill="#ffffff" d="M7.664,26.083v24.343h31.905V26.083H7.664z M22.587,48.583H10.325v-0.825h12.262V48.583z M22.587,46.438H10.325v-0.824
+              h12.262V46.438z M22.587,44.294H10.325v-0.825h12.262V44.294z M22.587,42.15H10.325v-0.825h12.262V42.15z M22.587,40.005H10.325
+              V39.18h12.262V40.005z M22.587,37.861H10.325v-0.825h12.262V37.861z M38.646,39.73h-1.291v-3.319h1.291V39.73z"/>
+        <path fill="#ffffff" d="M92.735,0c-7.408,0-13.413,6.005-13.413,13.413h13.413V0z"/>
+        <rect fill="#ffffff" x="79.322" y="14.338" width="13.485" height="2.197"/>
+        <polygon fill="#ffffff" points="100,0.059 97.116,13.413 93.925,13.413 93.925,0.059 "/>
+        <path fill="#ffffff" d="M37.587,7.782v5.839h5.839C43.427,10.396,40.812,7.782,37.587,7.782z"/>
+        <rect fill="#ffffff" x="37.556" y="14.024" width="5.871" height="2.763"/>
+        <rect fill="#ffffff" y="8.505" width="12.449" height="3.994"/>
+        <rect fill="#ffffff" x="1.278" y="58.848" width="90.181" height="5.256"/>
+        <polygon fill="#ffffff" points="12.961,7.259 12.961,13.622 15.803,13.622 15.803,16.905 17.242,16.905 17.242,13.622 31.719,13.622 31.719,16.905
+               33.158,16.905 33.158,13.622 36.835,13.622 36.835,7.259 "/>
+</g>
+
+ //Generator
+<g  transform="translate(5,70) scale(0.40,0.40)" style="fill:#ffffff; stroke:#ffffff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round">
+    <line  stroke-miterlimit="10" x1="13" y1="1" x2="13" y2="3"/>
+    <line  stroke-miterlimit="10" x1="13" y1="3" x2="13" y2="6"/>
+    <line  stroke-miterlimit="10" x1="37" y1="1" x2="37" y2="3"/>
+    <line  stroke-miterlimit="10" x1="37" y1="3" x2="37" y2="6"/>
+    <line  stroke-miterlimit="10" x1="31" y1="1" x2="31" y2="3"/>
+    <line  stroke-miterlimit="10" x1="31" y1="3" x2="31" y2="6"/>
+    <line  stroke-miterlimit="10" x1="25" y1="1" x2="25" y2="3"/>
+    <line  stroke-miterlimit="10" x1="25" y1="3" x2="25" y2="6"/>
+    <line  stroke-miterlimit="10" x1="19" y1="1" x2="19" y2="3"/>
+    <line  stroke-miterlimit="10" x1="19" y1="3" x2="19" y2="6"/>
+    <line  stroke-miterlimit="10" x1="49" y1="13" x2="47" y2="13"/>
+    <line  stroke-miterlimit="10" x1="47" y1="13" x2="44" y2="13"/>
+    <line  stroke-miterlimit="10" x1="49" y1="37" x2="47" y2="37"/>
+    <line  stroke-miterlimit="10" x1="47" y1="37" x2="44" y2="37"/>
+    <line  stroke-miterlimit="10" x1="49" y1="31" x2="47" y2="31"/>
+    <line  stroke-miterlimit="10" x1="47" y1="31" x2="44" y2="31"/>
+    <line  stroke-miterlimit="10" x1="49" y1="25" x2="47" y2="25"/>
+    <line  stroke-miterlimit="10" x1="47" y1="25" x2="44" y2="25"/>
+    <line  stroke-miterlimit="10" x1="49" y1="19" x2="47" y2="19"/>
+    <line  stroke-miterlimit="10" x1="47" y1="19" x2="44" y2="19"/>
+    <line  stroke-miterlimit="10" x1="37" y1="49" x2="37" y2="47"/>
+    <line  stroke-miterlimit="10" x1="37" y1="47" x2="37" y2="44"/>
+    <line  stroke-miterlimit="10" x1="13" y1="49" x2="13" y2="47"/>
+    <line  stroke-miterlimit="10" x1="13" y1="47" x2="13" y2="44"/>
+    <line  stroke-miterlimit="10" x1="19" y1="49" x2="19" y2="47"/>
+    <line  stroke-miterlimit="10" x1="19" y1="47" x2="19" y2="44"/>
+    <line  stroke-miterlimit="10" x1="25" y1="49" x2="25" y2="47"/>
+    <line  stroke-miterlimit="10" x1="25" y1="47" x2="25" y2="44"/>
+    <line  stroke-miterlimit="10" x1="31" y1="49" x2="31" y2="47"/>
+    <line  stroke-miterlimit="10" x1="31" y1="47" x2="31" y2="44"/>
+    <line  stroke-miterlimit="10" x1="1" y1="37" x2="3" y2="37"/>
+    <line  stroke-miterlimit="10" x1="3" y1="37" x2="6" y2="37"/>
+    <line  stroke-miterlimit="10" x1="1" y1="13" x2="3" y2="13"/>
+    <line  stroke-miterlimit="10" x1="3" y1="13" x2="6" y2="13"/>
+    <line  stroke-miterlimit="10" x1="1" y1="19" x2="3" y2="19"/>
+    <line  stroke-miterlimit="10" x1="3" y1="19" x2="6" y2="19"/>
+    <line  stroke-miterlimit="10" x1="1" y1="25" x2="3" y2="25"/>
+    <line  stroke-miterlimit="10" x1="3" y1="25" x2="6" y2="25"/>
+    <line  stroke-miterlimit="10" x1="1" y1="31" x2="3" y2="31"/>
+    <line  stroke-miterlimit="10" x1="3" y1="31" x2="6" y2="31"/>
+    <path  stroke-miterlimit="10" d="
+	M39.734,8H10.266C9.015,8,8,9.013,8,10.266v29.468C8,40.987,9.015,42,10.266,42h29.468C40.985,42,42,40.987,42,39.734V10.266
+	C42,9.013,40.985,8,39.734,8z"/>
+    <rect x="16" y="18" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="18" height="14"/>
+</g>
+<g           transform="translate(35,70)" class="hmiLamp">
+    <circle  r="7" cx= "0" cy="0" data-tag="alarm" data-set="?"/>
+    <text
+            x="12"
+            y="0"
+            text-anchor="left" alignment-baseline="middle"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:7pt"
+            >Авария</text>
+</g>
+<g           transform="translate(35,87)" class="hmiLamp">
+        <circle  r="7" cx= "0" cy="0"  data-tag="warning"/>
+
+        <text
+                x="12"
+                y="0"
+                text-anchor="left" alignment-baseline="middle"
+                style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:7pt"
+                >Неисправность</text>
+</g>
+    //Напряжение
+<g              transform="translate(27,125) scale(0.9,0.9)">
+        <rect
+                width="115"
+                height="15"
+                x="0"
+                y="12"
+                rx="10"
+                ry="10"
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+        <rect
+                width="115"
+                height="27"
+
+                x="0"
+                y="0"
+                rx="10"
+                ry="10"
+                style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+        <text
+                x="57.5"
+                y="6.2"
+
+                text-anchor="middle" alignment-baseline="middle"
+                style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:7pt"
+                >Напряжение акк-ра</text>
+        <text
+                x="57.5"
+                y="21"
+                data-tag="engine/bat"
+                text-anchor="middle" alignment-baseline="middle"
+                style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt"> </text>
+
+</g>
+    //Активная мощность
+<g           transform="translate(161,125) scale(0.9,0.9)">
+        <rect
+                width="115"
+                height="15"
+                x="0"
+                y="12"
+                rx="10"
+                ry="10"
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+        <rect
+                width="115"
+                height="27"
+
+                x="0"
+                y="0"
+                rx="10"
+                ry="10"
+                style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+        <text
+                x="57.5"
+                y="6.2"
+
+                text-anchor="middle" alignment-baseline="middle"
+                style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:7pt"
+                >Активная мощность</text>
+        <text
+                x="57.5"
+                y="21"
+                data-tag="genset/p"
+                text-anchor="middle" alignment-baseline="middle"
+                style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt"> </text>
+
+</g>
+
+<g          transform="translate(27,97) scale(0.9,0.9)">
+    <rect
+            width="115"
+            height="15"
+            x="0"
+            y="12"
+            rx="10"
+            ry="10"
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+    <rect
+            width="115"
+            height="27"
+
+            x="0"
+            y="0"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+    <text
+            x="57.5"
+            y="6.2"
+
+            text-anchor="middle" alignment-baseline="middle"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:7pt"
+            >Температура ОЖ</text>
+    <text
+            x="57.5"
+            y="21"
+            data-tag="engine/temp"
+            text-anchor="middle" alignment-baseline="middle"
+            style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt"> </text>
+
+</g>
+<g          transform="translate(161,69) scale(0.9,0.9)">
+
+    <rect
+            width="115"
+            height="15"
+            x="0"
+            y="12"
+            rx="10"
+            ry="10"
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+    <rect
+            width="115"
+            height="27"
+
+            x="0"
+            y="0"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+    <text
+            x="57.5"
+            y="6.2"
+
+            text-anchor="middle" alignment-baseline="middle"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:7pt"
+            >Давление масла</text>
+    <text
+            x="57.5"
+            y="20"
+            data-tag="engine/pressure"
+            text-anchor="middle" alignment-baseline="middle"
+            style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt"> </text>
+
+</g>
+<g          transform="translate(161,97) scale(0.9,0.9)">
+    <rect
+            width="115"
+            height="15"
+            x="0"
+            y="12"
+            rx="10"
+            ry="10"
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+    <rect
+            width="115"
+            height="27"
+
+            x="0"
+            y="0"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+    <text
+            x="57.5"
+            y="6.2"
+
+            text-anchor="middle" alignment-baseline="middle"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:7pt"
+            >Уровень топлива</text>
+    <text
+            x="57.5"
+            y="21"
+            data-tag="engine/fuel"
+            text-anchor="middle" alignment-baseline="middle"
+            style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt"> </text>
+
+</g>
+<g  transform="translate(2,98) scale(0.25,0.25)" style="fill:#ffffff; stroke:#ffffff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round">
+
+       <path d="M29.63,72.838c3.565,0,4.566-1.925,6.701-2.998c-0.334-1.21-0.525-2.477-0.525-3.791c0-0.298,0.024-0.59,0.042-0.886
+             c-1.83,1.098-2.927,2.739-6.218,2.739c-4.937,0-4.937-3.704-9.878-3.704c-4.942,0-4.942,3.704-9.878,3.704v4.936
+             c4.936,0,4.936-3.701,9.878-3.701C24.693,69.137,24.693,72.838,29.63,72.838z M50,74.075c4.429,0,8.031-3.595,8.031-8.026
+             c0-2.838-1.485-5.317-3.709-6.742v-3.749h13.581c1.365,0,2.468-1.106,2.468-2.472c0-1.361-1.103-2.467-2.468-2.467H54.322v-7.407
+             h13.581c1.365,0,2.468-1.106,2.468-2.471c0-1.362-1.103-2.468-2.468-2.468H54.322v-7.41h13.581c1.365,0,2.468-1.103,2.468-2.468
+             c0-1.362-1.103-2.468-2.468-2.468H54.322v-7.407h-0.06c-0.304-2.092-2.086-3.705-4.262-3.705c-2.176,0-3.953,1.612-4.263,3.705
+             h-0.06v40.786c-2.218,1.425-3.702,3.904-3.702,6.742C41.976,70.48,45.571,74.075,50,74.075z M70.371,80.248
+             c-4.936,0-4.936-3.705-9.872-3.705c-4.77,0-4.954,3.437-10.499,3.682c-5.544-0.245-5.729-3.682-10.492-3.682
+             c-4.942,0-4.942,3.705-9.878,3.705c-4.937,0-4.937-3.705-9.878-3.705c-2.468,0-3.702,0.927-4.942,1.852v4.938
+             c1.24-0.924,2.474-1.852,4.942-1.852c4.942,0,4.942,3.702,9.878,3.702c4.936,0,4.936-3.702,9.878-3.702
+             c4.584,0,4.918,3.184,9.878,3.646v0.057c0.215,0,0.412-0.015,0.614-0.021c0.208,0.006,0.399,0.021,0.614,0.021v-0.057
+             c4.959-0.462,5.299-3.646,9.884-3.646c4.937,0,4.937,3.702,9.872,3.702c4.937,0,4.937-3.702,9.879-3.702
+             c2.474,0,3.702,0.928,4.941,1.852v-4.938c-1.239-0.925-2.468-1.852-4.941-1.852C75.308,76.543,75.308,80.248,70.371,80.248z
+             M80.25,64.198c-4.942,0-4.942,3.704-9.879,3.704c-3.291,0-4.388-1.642-6.218-2.739c0.018,0.296,0.042,0.588,0.042,0.886
+             c0,1.314-0.191,2.581-0.524,3.791c2.134,1.07,3.136,2.998,6.7,2.998c4.937,0,4.937-3.701,9.879-3.701
+             c4.941,0,4.941,3.701,9.878,3.701v-4.936C85.191,67.902,85.191,64.198,80.25,64.198z"/>
+
+</g>
+<g            transform="translate(104,35) scale(0.13,0.13)" style="fill:#ffffff; stroke:#ffffff; stroke-width:1; stroke-linecap:round; stroke-linejoin:round">
+    <path  d="m405.03 402.14c-1.1449-0.46315-4.3732-2.4601-5.2857-4.549-2.1865-5.0054-3.5828-8.8949 2.6109-22.188
+              2.9036-6.2317 5.7833-12.455 6.3994-13.83l1.12-2.5 1.6862 4c0.92741 2.2 3.6946 8.216 6.1494 13.369
+              5.4613 11.464 4.8914 17.338 3.7469 19.768-2.8684 6.091-9.8917 8.5739-16.427
+              5.9301zm-181.26-1.6-0.11-35.05c-0.47764-1.7802-0.91323-1.824-21.704-8.9275-2.141-0.7315-18.56-6.935-19.105-7.3043-3.1413-2.1279-3.7761-3.2462-3.7761-5.6761 0-2.246 8.0811-21.915 10.581-25.752 1.0404-1.5974 2.5751-3.0371
+              4.831-2.25 2.0472 0.71429 36.734 13.044 40.565 14.479 1.3284 0.49746 2.0497 3.1459 2.2178 4.8758l0.30555 3.1453h11.5
+              11.5v-3-3l-7.1488-0.5c-8.0823-0.56529-11.351-2.5756-11.351-6.9807 0-1.4987 1.0157-3.6249 2.3144-4.845 2.2282-2.0933
+              3.1159-2.1743 23.826-2.1743 21.192 0 21.543 0.0343 23.686 2.3144 1.1959 1.273 2.1743 3.4532 2.1743 4.845 0
+              4.2659-3.3429 6.2804-11.351 6.8405l-7.1488 0.5v3 3l11.704 0.28133 11.704 0.28134 5.5857 5.105 5.5857 5.105c1.1356-0.25644
+              85.364-21.686 86.246-21.906 0.12147 0.026 5.6687 5.0944 9.4248 8.8327 4.9706 4.9471 7.8324 9.2185 4.2503 12.801-3.4145
+              3.4145-7.4527 2.5921-13.07-2.6618l-4.9839-4.6618-8.6808 2.4164-8.6808 2.4164c-1.2413 1.1449-46.116 52.05-48.617
+              54.491h-48.762zm110.73-29.534 16.121-18.509-23.045 6.0847-20.637 5-13.577-11.032-56.417-0.0992-0.0585 34.228
+              42.582-0.097h41.455zm-111.25-24.18c0.22896-0.9625 0.16895-3.0425-0.13337-4.6222-0.50037-2.6146-1.4914-3.2189-11.05-6.738-5.775-2.1262-11.233-3.8713-12.129-3.8778-1.7434-0.0128-4.4833 5.1156-3.6562 7.1333 0.63755 1.5555
+              22.569 9.6699 25.418 9.8022 0.62335 0.0289 1.3207-0.7349 1.5497-1.6974z"/>
+
+</g>
+
+<g   transform="translate(137,98) scale(0.07,0.07)" style="fill:#ffffff; stroke:#ffffff; stroke-width:1; stroke-linecap:round; stroke-linejoin:round">
+    <path d="M267.389,2.263c-3.168-3.078-8.232-3.008-11.313,0.16c-6.597,6.785-39.8,42.174-45.621,72.572
+            c-4.335,22.643,3.927,47.984,11.917,72.492c5.626,17.258,10.94,33.559,10.94,46.512c0,11.293-4.807,17.387-9.33,17.387
+            c-4.06,0-8.336-5.285-8.336-15.387c0-12.461,0.042-48.662-28.958-53.467V57.999c0-4.418-3.249-7.5-7.667-7.5h-10.333v-8.5
+            c0-4.418-3.249-7.5-7.667-7.5h-81c-4.418,0-8.333,3.082-8.333,7.5v8.5h-8.667c-4.418,0-8.333,3.082-8.333,7.5v207.5H38.021
+            c-4.418,0-8.333,3.082-8.333,7.5v18c0,4.418,3.915,8.5,8.333,8.5h166c4.418,0,7.667-4.082,7.667-8.5v-18
+            c0-4.418-3.249-7.5-7.667-7.5h-17.333V158.908c6,2.236,12.958,10.016,12.958,37.092c0,21.564,12.613,31.387,24.253,31.387
+            c12.588,0,25.372-11.467,25.372-33.387c0-15.494-5.676-32.969-11.708-51.471c-4.156-12.748-8.38-25.74-10.641-37.984
+            c12.769-2.752,21.273-8.719,25.293-17.799c7.756-17.521-5.232-38.854-8.71-44.063c7.248-10.422,15.829-20.658,24.042-29.107
+            C270.627,10.408,270.557,5.343,267.389,2.263z M168.688,133.499c0,4.418-3.582,8-8,8h-81c-4.418,0-8-3.582-8-8v-57
+            c0-4.418,3.582-8,8-8h81c4.418,0,8,3.582,8,8V133.499z M237.582,80.286c-1.7,3.82-5.836,6.574-12.31,8.229
+            c-0.019-3.637,0.256-7.152,0.898-10.512c1.144-5.971,3.92-12.777,7.748-19.879C237.226,64.851,240.344,74.077,237.582,80.286z" fill="#FFFFFF"/>
+</g>
+<g      transform="translate(3,126) scale(0.045,0.045)" style="fill:#ffffff; stroke:#ffffff; stroke-width:1; stroke-linecap:round; stroke-linejoin:round">
+        <path d="M322.417,35.255V2.496h-132.83v32.759H94.846v474.249h322.308V35.255H322.417z M362.533,459.454H149.469V85.305h213.064
+		V459.454z"/>
+        <rect x="170.713" y="342.627" width="169.686" height="94.38"/>
+        <path d="M269.346,225.887c-0.637,1.214-1.303,2.41-1.946,3.62c-4.788,8.705-8.778,17.891-13.157,26.843
+		c-8.184,18.251-15.993,36.729-21.705,56.474c14.838-14.225,27.58-29.718,39.948-45.438c5.895-8.034,12.179-15.833,17.667-24.114
+		c5.612-8.207,11.422-16.292,16.704-24.698l13.705-21.812l-26.373-0.656c-15.815-0.393-31.631-0.255-47.448,0.228
+		c1.016-1.792,2.131-3.522,3.125-5.328c5.245-9.224,10.489-18.451,15.36-27.925c10.046-18.746,19.446-37.922,27.706-57.86
+		c-15.227,15.292-29.313,31.346-42.753,47.829c-6.873,8.14-13.371,16.529-19.87,24.918c-6.615,8.311-12.92,16.83-19.135,25.409
+		l-13.988,19.312l25.288,1.801C238.098,225.603,253.723,225.885,269.346,225.887z"/>
+</g>
+<g  transform="translate(131,128) scale(0.35,0.35)" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="square">
+        <circle cx="41" cy="30" r="25.3" />
+        <line x1='67' y1='30' x2='74' y2='30' />
+        <line x1='8' y1='30' x2='15' y2='30' />
+        <path
+                d="M 31.4 36.6 L 39.4 16.4 L 42.2 16.4 L 50.1 36.6 L 47.0 36.6 L 44.8 31.0 L 36.3 31.0 L 34.0 36.6
+                L 31.4 36.6 z M 37.1 28.9 L 44.0 28.9 L 40.5 20.2 L 37.1 28.9 z"
+                fill="#ffffff" stroke="none" />
+</g>
+
+</svg>
+

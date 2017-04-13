@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg7021" viewBox="0 0 91.25 122.66" version="1.1">
+  <g id="layer1" stroke="#9c9c9c" stroke-miterlimit="10" transform="translate(-137.22 -271.03)">
+    <path id="path1224" stroke-width="3.75" fill-rule="evenodd" fill="#bdbdbd" d="m139.11 380.41v-97.5h87.5v97.5l-2.5 2.5-5 2.5-4.458 1.8408-3.4472 0.80575-4.2529 1.2158-5.3418 1.1378-3.6768 0.586-5.0635 0.6055-9.2188 0.205-11.348-0.40525-9.2188-1.0108-9.4238-2.5342-7.0508-2.4463-2.6758-1.3037-2.3242-1.1963z"/>
+    <path id="path1226" stroke-width="3.75" fill-rule="evenodd" fill="#bdbdbd" d="m226.61 281.66c0 4.8291-19.59 8.75-43.75 8.75-24.165 0-43.75-3.9209-43.75-8.75 0-4.834 19.585-8.75 43.75-8.75 24.16 0 43.75 3.916 43.75 8.75"/>
+    <path id="path1228" stroke-width="2.5" fill-rule="evenodd" fill="#bdbdbd" d="m201.61 279.16c0 2.0702-8.3984 3.75-18.75 3.75-10.356 0-18.75-1.6798-18.75-3.75s8.3936-3.75 18.75-3.75c10.352 0 18.75 1.6798 18.75 3.75"/>
+    <path id="path1230" stroke-width="2.5" fill="none" d="m164.11 279.16v5"/>
+    <path id="path1232" stroke-width="2.5" fill="none" d="m201.61 279.16v5"/>
+    <path id="path1234" stroke-linejoin="round" d="m177.86 335.41h10c7.5928 0 13.75 6.1524 13.75 13.75 0 7.5928-6.1572 13.75-13.75 13.75h-10c-7.5976 0-13.75-6.1572-13.75-13.75 0-7.5976 6.1524-13.75 13.75-13.75" fill-rule="evenodd" stroke-width="2.5" fill="#fff"/>
+    <path id="path1236" stroke-linejoin="round" stroke-width="5" fill="none" d="m174.11 307.91v17.5"/>
+    <path id="path1238" stroke-linejoin="round" stroke-width="5" fill="none" d="m191.61 307.91v17.5"/>
+    <path id="path1240" stroke-linejoin="round" stroke-width="10" fill="none" d="m182.61 362.91v17.5"/>
+    <path id="path1242" stroke-linejoin="round" d="m166.61 325.41h32.5c1.377 0 2.5 1.1182 2.5 2.5v22.5c0 1.377-1.123 2.5-2.5 2.5h-32.5c-1.3818 0-2.5-1.123-2.5-2.5v-22.5c0-1.3818 1.1182-2.5 2.5-2.5" fill-rule="evenodd" stroke-width="2.5" fill="#fff"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>UPS</dc:title>
+        <dc:date>2012-08-02T14:26:17</dc:date>
+        <dc:description>UPS, clip art, clipart, computer, informatique, inverter, it, onduleur, ordinateur, server, serveur, </dc:description>
+        <dc:source>http://openclipart.org/detail/171419/ups-by-cyberscooty-171419</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>cyberscooty</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>UPS</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>computer</rdf:li>
+            <rdf:li>informatique</rdf:li>
+            <rdf:li>inverter</rdf:li>
+            <rdf:li>it</rdf:li>
+            <rdf:li>onduleur</rdf:li>
+            <rdf:li>ordinateur</rdf:li>
+            <rdf:li>server</rdf:li>
+            <rdf:li>serveur</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

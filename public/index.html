@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="lib\d3\d3.v4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib\jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="\lib\jquery-ui-1.12.0-rc.2\jquery-ui.js"></script>
+    <link href="\lib\jquery-ui-1.12.0-rc.2\themes\vader\jquery-ui.css" rel="stylesheet">
+    <link href="\lib\jquery-ui-1.12.0-rc.2\themes\vader\theme.css" rel="stylesheet">
+
+    <script src="\lib\jqGrid-4.14.0\js\i18n\grid.locale-ru.js" type="text/javascript" charset="utf-8"></script>
+    <script src="\lib\jqGrid-4.14.0\jquery.jqgrid.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="\lib\jqGrid-4.14.0\css\ui.jqgrid.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+
+    <link rel="stylesheet" href="hmi.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script src="hmi.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="mess.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script src="mess.js" type="text/javascript" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="index.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <script src="dialogs.js" type="text/javascript" charset="utf-8"></script>
+    <script src="index.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+
+<body style="display:none;">
+<table class="layout">
+    <tr class="header" height="30px">
+        <td>
+            <div class="logo">
+                <h1>#БудьВКурсе</h1>
+                Информационная система
+            </div>
+            <div id="content" class="content">
+            </div>
+            <ul class="loginList">
+                <li>
+                    <img src="/img/key.png" style="cursor: pointer" onclick="$('#dialog-login').dialog('open');">
+                </li>
+                <li>
+                    Вы зашли как:<BR>
+                    <span id="username"></span>
+                </li>
+                <li>
+                    <img src="/img/door.png" style="cursor: pointer" onclick="$.post('login', {username: '', password: ''});">
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr height="30px">
+        <td id="nav" class="ui-widget ui-widget-content ui-corner-all">
+            <ul id="neuronPath" class=""></ul>
+            <hr>
+            <ul id="childList" class=""></ul>
+        </td>
+    </tr>
+    <tr class = "main">
+        <td>
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-info">Информация</a></li>
+                    <li><a href="#tabs-tags">Параметры</a></li>
+                    <li><a href="#tabs-face">Мнемо</a></li>
+                    <li><a href="#tabs-events">Сообщения</a></li>
+                    <li><a href="#tabs-trends">Тренды</a></li>
+                </ul>
+                <div id="tabs-info">
+                    Информация не задана<br>
+                </div>
+                <div id="tabs-tags">
+                    <ul id="ownValue" class="tabList">Параметры не определены</ul>
+                    <hr>
+                    <ul id="chldList" class="tabList">Параметры не определены</ul>
+                </div>
+                <div id="tabs-face">
+                    <svg width="50" height="300" viewBox="-6 -6 35 200" style="position: absolute;">
+                        <g>
+                            <g style="cursor: pointer" onclick="goFullScreen();">
+                                <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+                                <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M24 9h-2v-5h-7v-2h9v7zm-9 13v-2h7v-5h2v7h-9zm-15-7h2v5h7v2h-9v-7zm9-13v2h-7v5h-2v-7h9z"/>
+                            </g>
+                            <g transform="translate(0,35)" style="cursor: pointer" onclick="cancelFullScreen();">
+                                <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+                                <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M18 3h2v4h4v2h-6v-6zm6 12v2h-4v4h-2v-6h6zm-18 6h-2v-4h-4v-2h6v6zm-6-12v-2h4v-4h2v6h-6z"/>
+                            </g>
+                            <g transform="translate(0,100)" style="cursor: pointer" onclick="svg.transition().duration(1000).call(zoom.transform, d3.zoomIdentity);">
+                                <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+                                <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M13 8h-8v-2h8v2zm0 4h-8v-2h8v2zm8.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
+                            </g>
+                            <g transform="translate(0,135)" style="cursor: pointer" onclick="svg.transition().duration(500).call(zoom.scaleBy, 2);">
+                                <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+                                <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M13 10h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
+                            </g>
+                            <g transform="translate(0,170)" style="cursor: pointer" onclick="svg.transition().duration(500).call(zoom.scaleBy, 0.5);">
+                                <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+                                <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M13 10h-8v-2h8v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
+                            </g>
+                        </g>
+                    </svg>
+                    <svg id="face" viewBox="0 0 500 500">
+                        <defs>
+                            <linearGradient id="hmiBtnGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#777777"/>
+                                <stop offset="50%" stop-color="#303030"/>
+                                <stop offset="100%" stop-color="#1c1c1c"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div id="tabs-events"  class="box">
+                    <div id="btHolder" class="rowHeader">
+                        Вид:
+                        <input class="tfsel" id="bt_mess_curr" type="button" value="Текущие сообщения" onclick="mess.setTableCurr();">
+                        <input id="bt_mess_arch" type="button" value="Архивные сообщения" onclick="mess.setTableArch();">
+                        &nbsp; &nbsp; Авто обновление:
+                        <input class="upsel" id="bt_mess_upsel" type="button" value="Вкл." onclick="mess.toggleUpdate();">
+
+                    </div>
+
+                    <div id="tableHolder" class="rowContent">
+                        <table id="jqGrid"></table>
+                    </div>
+                    <div id="jqGridPager"></div>
+
+
+                </div>
+                <div id="tabs-trends">
+                    <iframe id="trends" frameborder="0" src="" scrolling="no"></iframe>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr class = "footer">
+        <td>
+            © VK
+        </td>
+    </tr>
+</table>
+
+<div id="dialog-form" title="Ввод значения" style="display:none;">
+    <p class="validateTips">Введите новое значение:</p>
+
+    <form>
+        <fieldset>
+            <label for="newVal">Новое значение:</label>
+            <input type="text" name="newVal" id="newVal" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+<div id="dialog-error" title="Ошибка" style="display:none;">
+    <p id="error-text">Отсутствует связь с сервером</p>
+</div>
+
+<div id="dialog-login" title="Авторизация" style="display:none;">
+    <form>
+        <p id="loginInfo">Введите реквизиты:</p>
+        <fieldset>
+            <label for="uName">Имя пользователя:</label>
+            <input type="text" name="uName" id="uName" class="text ui-widget-content ui-corner-all">
+            <label for="uPass">Пароль:</label>
+            <input type="password" name="uPass" id="uPass" class="text ui-widget-content ui-corner-all">
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>
+
+
+
+</body>
+</html>

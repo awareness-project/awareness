@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+    <rect
+            width="285"
+            height="130"
+            x="0"
+            y="0"
+            rx="10"
+            ry="10"
+            style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1"/>
+    <text
+            x="5"
+            y="15"
+            data-eval="me.text(neuron.name);"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:10pt">name</text>
+//Накопленная энергия от сброса
+
+        <rect
+                width="275"
+                height="17"
+
+                x="5"
+                y="38"
+                rx="10"
+                ry="10"
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+        <rect
+                width="275"
+                height="30"
+                x="5"
+                y="25"
+                rx="10"
+                ry="10"
+                style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+        <text
+                x="142.5"
+                y="32"
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:8pt">Накопленная энергия от сброса</text>
+        <text
+                x="142.5"
+                y="48"
+                data-tag="energyFromReset"
+
+
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt"> </text>
+
+//Мощность
+
+        <rect
+                width="135"
+                height="17"
+                x="5"
+                y="70"
+                rx="10"
+                ry="10"
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+        <rect
+                width="135"
+                height="30"
+                x="5"
+                y="57"
+                rx="10"
+                ry="10"
+                style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+        <text
+                x="70"
+                y="64"
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:8pt">Мощность</text>
+        <text
+                x="70"
+                y="80"
+                data-tag="p"
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt">11</text>
+
+ //Ток
+        <rect
+                width="135"
+                height="17"
+                x="145"
+                y="70"
+                rx="10"
+                ry="10"
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+        <rect
+                width="135"
+                height="30"
+                x="145"
+                y="57"
+                rx="10"
+                ry="10"
+                style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+        <text
+                x="210"
+                y="64"
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:8pt">Ток</text>
+        <text
+                x="210"
+                y="80"
+                data-tag="i"
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt"> </text>
+
+ //Частота сети
+
+        <rect
+                width="135"
+                height="17"
+                x="5"
+                y="102"
+                rx="10"
+                ry="10"
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+        <rect
+                width="135"
+                height="30"
+                x="5"
+                y="89"
+                rx="10"
+                ry="10"
+                style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+        <text
+                x="70"
+                y="96"
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:8pt">Частота сети</text>
+        <text
+                x="70"
+                y="111"
+
+                data-tag="f"
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt"> </text>
+
+ //Энергия реактивная
+        <rect
+                width="135"
+                height="17"
+                x="145"
+                y="102"
+                rx="10"
+                ry="10"
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+        <rect
+                width="135"
+                height="30"
+                x="145"
+                y="89"
+                rx="10"
+                ry="10"
+                style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+        <text
+                x="210"
+                y="96"
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:8pt">Cos(φ) по сумме фаз</text>
+        <text
+                x="210"
+                y="111"
+                data-tag="kP"
+                text-anchor="middle"
+                alignment-baseline="middle"
+                style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:10pt"> </text>
+
+
+</svg>
