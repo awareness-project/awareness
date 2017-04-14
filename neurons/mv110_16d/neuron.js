@@ -2,7 +2,6 @@
 
 var Neuron = require('./../prototype/neuron.js');
 var Di = require('./../di/neuron.js');
-var Tag = require('./../../tags/prototype/tag.js');
 
 class Mv110_16d extends Neuron {
 
