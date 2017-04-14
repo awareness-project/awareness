@@ -1,7 +1,6 @@
 'use strict';
 
 var Neuron = require('./../prototype/neuron.js');
-var Tag = require('./../../tags/prototype/tag.js');
 
 class Link extends Neuron {
 
