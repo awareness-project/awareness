@@ -22,7 +22,6 @@ module.exports = {
     Web: require('./awareness-web.js'),
     MbTcpServer: require('./awareness-modbus-tcp-server.js'),
 
-
     reportError: function (id) {
         return function (err) {
             if (err) {
