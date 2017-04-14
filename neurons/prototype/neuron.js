@@ -81,7 +81,7 @@ class Neuron {
     setPubPath() {
         var context = this;
         if(typeof this.options.pubPath === 'string') return;
-        var testPath = __dirname + '/../../npub/' + this.data.path + (this.data.path?'/':'') + 'public';
+        var testPath = Neuron.projectPath + '/npub/' + this.data.path + (this.data.path?'/':'') + 'public';
         fs.access(testPath, fs.constants.R_OK, function(err){
             if(err){
                 //console.log(err);

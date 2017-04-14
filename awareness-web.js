@@ -62,7 +62,7 @@ function Web(options, node) {
         rolling: true
     }));
 
-    context.express.use(Express.static('public'));
+    context.express.use(Express.static(__dirname + '/public'));
 
     context.express.get('/neuron.json', function (req, res) {
         var neuron = node.getNeuron(req.query.path);
@@ -213,13 +213,9 @@ Web.prototype.log = function(level, message){
     console.log(new Date().toISOString() + ' ' + WEB + ' ' + level + ' ' + message);
 };
 
-module.exports = Web;
-
-
-var users = JSON.parse(fs.readFileSync(__dirname + '/users.json', "utf8"));
-
-function authUser(username, password, req, res) {
-    var user = users[username];
+Web.prototype.authUser = function(username, password, req, res) {
+    if(typeof this.options.users !== 'object') return false;
+    var user = this.options.users[username];
     if (user && user.pass === password) {
         if(req.session){
             req.session.user = user;
@@ -229,5 +225,7 @@ function authUser(username, password, req, res) {
         delete req.session.user;
         return false;
     }
-
 }
+
+module.exports = Web;
+
