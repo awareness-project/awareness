@@ -43,8 +43,10 @@ var hmi = {
 
                     context.g = g;
 
-                    var width = 100,
-                        height = 100;
+                    g.on('click', function() {
+                        d3.event.stopPropagation();
+                        getNeuron(path);
+                    });
 
                     context.taggedStuff = context.g.selectAll('[data-tag]');
                     context.evalStuff = context.g.selectAll('[data-eval]');
@@ -64,6 +66,7 @@ var hmi = {
                     context.commandStuff = context.g.selectAll('[data-tag][data-set]');
 
                     context.commandStuff.on('click', function(){
+                        d3.event.stopPropagation();
                         var me = d3.select(this);
                         var neuron = context.neuron;
                         var tag = me.attr('data-tag');
