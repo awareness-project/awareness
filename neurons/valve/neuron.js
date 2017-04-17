@@ -44,8 +44,13 @@ class Valve extends Neuron {
                 children:{
                     phOpn: new Neuron({name:'Открыть', value: 0, rw:true, setValueHandler: Valve.setValveCmdBinHandler}),
                     phCls: new Neuron({name:'Закрыть', value: 0, rw:true, setValueHandler: Valve.setValveCmdBinHandler}),
-                }})
+                }}),
+
+            par: new Neuron({name:'Параметры', children: {
+                tSw: new Neuron({name: 'Время перестановки', unit: 'с',retentive: true, value: 0, rw: true, min: 0, max: 600, setValueHandler: Neuron.setValueFloatHandler}),
+            }}),
         };
+
 
         super(options);
 
@@ -114,9 +119,11 @@ class Valve extends Neuron {
                     context.value = 1;//Открывается
                     if(context.children.pos.value === 1) return 'opened';
                     context.children.cmd.children.phOpn.value = 1;//Открыть
-                    this.timeout = setTimeout(function(){
-                        fsm.event('timeout');
-                    }, 10000);
+                    if (context.children.par.children.tSw.value > 0) {
+                        this.timeout = setTimeout(function () {
+                                fsm.event('timeout');
+                            }, context.children.par.children.tSw.value * 1000)
+                    }
                 },
                 event: function (event) {
                     switch(event) {
@@ -137,9 +144,12 @@ class Valve extends Neuron {
                     context.value = 2;//Закрывается
                     if(context.children.pos.value === 2) return 'closed';
                     context.children.cmd.children.phCls.value = 1;//Закрыть
-                    this.timeout = setTimeout(function(){
-                        fsm.event('timeout');
-                    }, 10000);
+
+                    if (context.children.par.children.tSw.value > 0) {
+                        this.timeout = setTimeout(function () {
+                            fsm.event('timeout');
+                        }, context.children.par.children.tSw.value * 1000)
+                    }
                 },
                 event: function (event) {
                     switch(event) {
