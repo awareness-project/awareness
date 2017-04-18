@@ -198,6 +198,7 @@ function getNeuron(path){
 
 function getMnemo(path, neuron, scope, callback) {
     scope.g.selectAll("*").remove();
+    svg.call(zoom.transform, d3.zoomIdentity);
     hook = undefined;
 
     d3.xml('npub/mnemo.svg?path=' + path, function(error, documentFragment) {
