@@ -52,9 +52,14 @@ td {
     width: calc(100% - 550px);
 }
 
+#nav {
+
+}
+
 #neuronPath {
     list-style: none;
     margin:0px;
+    display: inline-block;
 }
 #neuronPath li {
     cursor: pointer;
@@ -63,11 +68,12 @@ td {
     margin-right:2px;
 }
 
-#childList {
+#navList {
     list-style: none;
     margin:0px;
+    display: inline-block;
 }
-#childList li {
+#navList li {
     cursor: pointer;
     display: inline-block;
     margin-left:2px;

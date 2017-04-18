@@ -65,6 +65,7 @@ var hmi = {
 
                     context.commandStuff = context.g.selectAll('[data-tag][data-set]');
 
+                    context.commandStuff.on('mousedown', function() { d3.event.stopImmediatePropagation(); }); // prevent panning instead of clicking to make clicking easier on touch screens
                     context.commandStuff.on('click', function(){
                         d3.event.stopPropagation();
                         var me = d3.select(this);
