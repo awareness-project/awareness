@@ -3,6 +3,8 @@
 var currentNeuronPath = '';
 var currentNeuron = null;
 
+var navHistory = [];
+
 var svg;
 var g;
 var zoom;
@@ -132,6 +134,9 @@ function getNeuron(path){
 
         currentNeuronPath = path;
         currentNeuron = neuron;
+
+        if(navHistory.length > 30) navHistory.shift();
+        navHistory.push({path: path});
 
         ancor = undefined;
         if($( "#tabs" ).tabs( "option", "active" ) == 2){ //mnemo tab is opened
@@ -333,4 +338,13 @@ function cancelFullScreen(){
     document.webkitCancelFullScreen();
     $('#dialog-form').dialog('option','appendTo','body');
     $('#dialog-error').dialog('option','appendTo','body');
+}
+
+function navBack(){
+    if(navHistory.length > 1){
+        navHistory.pop(); //last element is the current neuron
+        var navPoint = navHistory.pop();
+        getNeuron(navPoint.path);
+    }
+
 }
