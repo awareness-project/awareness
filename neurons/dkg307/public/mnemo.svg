@@ -181,7 +181,7 @@
                 y="12"
                 rx="10"
                 ry="10"
-                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-tag=''/>
         <rect
                 width="115"
                 height="27"
@@ -215,7 +215,7 @@
                 y="12"
                 rx="10"
                 ry="10"
-                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-tag=''/>
         <rect
                 width="115"
                 height="27"
@@ -249,7 +249,7 @@
             y="12"
             rx="10"
             ry="10"
-            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-tag=''/>
     <rect
             width="115"
             height="27"
@@ -283,7 +283,7 @@
             y="12"
             rx="10"
             ry="10"
-            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-tag=''/>
     <rect
             width="115"
             height="27"
@@ -316,7 +316,7 @@
             y="12"
             rx="10"
             ry="10"
-            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+            style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-tag=''/>
     <rect
             width="115"
             height="27"

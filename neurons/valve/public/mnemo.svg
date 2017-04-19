@@ -22,24 +22,24 @@
               d=" M16,34.5h2h24h2v4H16V34.5z M9,57.5H5v-1v-18v-1h4V57.5z M11,54.5v-14h4h30h4v14H11z M55,57.5
 	h-4v-1v-18v-1h4v1v18V57.5z M58,54.5h-1v-14h1V54.5z M2,54.5v-14h1v14H2z "/>
     </g>
-        <g>
-            <rect
-                    width="250"
-                    height="40"
-                    x="125"
-                    y="293"
-                    rx="0"
-                    ry="0"
-                    style="fill: none"/>
+        <g  >
+                <rect
+                        width="250"
+                        height="40"
+                        x="125"
+                        y="293"
+                        rx="10"
+                        ry="10"
+                        style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-tag=''/>
 
-            <text
-                    x="250"
-                    y="315"
+                <text
+                        x="250"
+                        y="315"
+                        data-tag=""
+                        text-anchor="middle" alignment-baseline="middle"
+                        style=" stroke:none;fill:#000000; fill-opacity:1;opacity:1;font-size:25pt"> </text>
 
-                    data-tag=""
-                    text-anchor="middle" alignment-baseline="middle"
-                    style=" stroke:none;fill: #1E90FF; fill-opacity:1;opacity:1;font-size:25pt"></text>
-            <text
+                <text
                     x="250"
                     y="23"
                     data-eval="me.text(neuron.name);"
@@ -71,6 +71,7 @@
                     style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;font-size:19pt">Закрыть
             </text>
         </g>
+
         <g data-tag="cmd" data-set="0">
             <rect class="hmiButton"
                   x="125px" y="415px" width="252" height="55" rx="5px"/>
@@ -82,6 +83,7 @@
             </text>
 
         </g>
+
     </g>
 
 </svg>
