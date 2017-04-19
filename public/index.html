@@ -80,7 +80,7 @@
                     <ul id="chldList" class="tabList">Параметры не определены</ul>
                 </div>
                 <div id="tabs-face">
-                    <svg width="50" height="300" viewBox="-6 -6 35 200" style="position: absolute;">
+                    <svg width="50" height="300" viewBox="-6 -6 35 250" style="position: absolute;">
                         <g>
                             <g style="cursor: pointer" onclick="goFullScreen();">
                                 <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
@@ -90,17 +90,21 @@
                                 <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
                                 <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M18 3h2v4h4v2h-6v-6zm6 12v2h-4v4h-2v-6h6zm-18 6h-2v-4h-4v-2h6v6zm-6-12v-2h4v-4h2v6h-6z"/>
                             </g>
-                            <g transform="translate(0,100)" style="cursor: pointer" onclick="svg.transition().duration(1000).call(zoom.transform, d3.zoomIdentity);">
+                            <g transform="translate(0,85)" style="cursor: pointer" onclick="svg.transition().duration(1000).call(zoom.transform, d3.zoomIdentity);">
                                 <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
                                 <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M13 8h-8v-2h8v2zm0 4h-8v-2h8v2zm8.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
                             </g>
-                            <g transform="translate(0,135)" style="cursor: pointer" onclick="svg.transition().duration(500).call(zoom.scaleBy, 2);">
+                            <g transform="translate(0,120)" style="cursor: pointer" onclick="svg.transition().duration(500).call(zoom.scaleBy, 2);">
                                 <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
                                 <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M13 10h-3v3h-2v-3h-3v-2h3v-3h2v3h3v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
                             </g>
-                            <g transform="translate(0,170)" style="cursor: pointer" onclick="svg.transition().duration(500).call(zoom.scaleBy, 0.5);">
+                            <g transform="translate(0,155)" style="cursor: pointer" onclick="svg.transition().duration(500).call(zoom.scaleBy, 0.5);">
                                 <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
                                 <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M13 10h-8v-2h8v2zm8.172 14l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
+                            </g>
+                            <g transform="translate(0,205)" style="cursor: pointer" onclick="navBack();">
+                                <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
+                                <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M13.427 3.021h-7.427v-3.021l-6 5.39 6 5.61v-3h7.427c3.071 0 5.561 2.356 5.561 5.427 0 3.071-2.489 5.573-5.561 5.573h-7.427v5h7.427c5.84 0 10.573-4.734 10.573-10.573s-4.733-10.406-10.573-10.406z"/>
                             </g>
                         </g>
                     </svg>
