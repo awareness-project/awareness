@@ -3,7 +3,7 @@
 var currentNeuronPath = '';
 var currentNeuron = null;
 
-var navHistory = [];
+var navHistory = [{path:''}];
 
 var svg;
 var g;
@@ -132,11 +132,12 @@ function getNeuron(path){
         //var currentNeuron = null;
         tagValueElements = {};
 
+        if(navHistory.length > 30) navHistory.shift();
+        if(currentNeuronPath != path) navHistory.push({path: path});
+
         currentNeuronPath = path;
         currentNeuron = neuron;
 
-        if(navHistory.length > 30) navHistory.shift();
-        navHistory.push({path: path});
 
         ancor = undefined;
         if($( "#tabs" ).tabs( "option", "active" ) == 2){ //mnemo tab is opened
