@@ -84,6 +84,7 @@ $(function() {
         .on("zoom", zoomed));
 
     function zoomed() {
+        navHistory[navHistory.length - 1].transform = d3.event.transform;
         g.attr("transform", d3.event.transform);
     }
 
@@ -133,7 +134,7 @@ function getNeuron(path){
         tagValueElements = {};
 
         if(navHistory.length > 30) navHistory.shift();
-        if(currentNeuronPath != path) navHistory.push({path: path});
+        if(navHistory[navHistory.length - 1].path !== path) navHistory.push({path: path});
 
         currentNeuronPath = path;
         currentNeuron = neuron;
@@ -198,8 +199,14 @@ function getNeuron(path){
 
 
 function getMnemo(path, neuron, scope, callback) {
-    scope.g.selectAll("*").remove();
-    svg.call(zoom.transform, d3.zoomIdentity);
+    if(scope === window) {  //perform on root mnemo only
+        scope.g.selectAll("*").remove();
+        if(navHistory[navHistory.length - 1].transform){
+            svg.call(zoom.transform, navHistory[navHistory.length - 1].transform);
+        } else {
+            svg.call(zoom.transform, d3.zoomIdentity);
+        }
+    }
     hook = undefined;
 
     d3.xml('npub/mnemo.svg?path=' + path, function(error, documentFragment) {
@@ -345,7 +352,7 @@ function cancelFullScreen(){
 function navBack(){
     if(navHistory.length > 1){
         navHistory.pop(); //last element is the current neuron
-        var navPoint = navHistory.pop();
+        var navPoint = navHistory[navHistory.length - 1];//.pop();
         getNeuron(navPoint.path);
     }
 
