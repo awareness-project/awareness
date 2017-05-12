@@ -130,7 +130,7 @@ function Web(options, node) {
     });
 
     context.express.post('/login',function(req,res) {
-        if(authUser(req.body.username, req.body.password, req, res)){
+        if(context.authUser(req.body.username, req.body.password, req, res)){
             //res.set('uName', new Buffer(req.session.user.name).toString('base64'));
             res.set('uName', encodeURIComponent(req.session.user.name));
 
