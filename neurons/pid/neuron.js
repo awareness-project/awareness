@@ -3,7 +3,7 @@
 var Neuron = require('./../prototype/neuron.js');
 var Link = require('./../link/neuron.js');
 
-class Valve extends Neuron {
+class Pid extends Neuron {
 
     constructor(options) {
 
@@ -17,92 +17,165 @@ class Valve extends Neuron {
         options.children = {
             pV: pV,
             sP: sP,
+            e: new Neuron({name:'Рассогласование'}),
+            eS: new Neuron({name:'Рассогласование фильтрованное'}),
+            components: new Neuron({name:'Составляющие', children: {
+                p: new Neuron({name: 'Пропорциональная'}),
+                i: new Neuron({name: 'Интегральная'}),
+                d: new Neuron({name: 'Дифференциальная'}),
+            }}),
             par: new Neuron({name:'Параметры', children: {
+                lH: new Neuron({name: 'Верхний предел выхода',retentive: true, value: 100, rw: true, setValueHandler: Neuron.setValueFloatHandler}),
+                lL: new Neuron({name: 'Нижний предел выхода',retentive: true, value: -100, rw: true, setValueHandler: Neuron.setValueFloatHandler}),
                 kP: new Neuron({name: 'Коэффициент пропорциональной части',retentive: true, value: 1, rw: true, setValueHandler: Neuron.setValueFloatHandler}),
+                tI: new Neuron({name: 'Постоянная времени интегральной части',retentive: true, value: 0, unit: 'с', rw: true, setValueHandler: Neuron.setValueFloatHandler}),
+                tD: new Neuron({name: 'Постоянная времени дифференциальной части',retentive: true, value: 0, unit: 'с', rw: true, setValueHandler: Neuron.setValueFloatHandler}),
+                dZ: new Neuron({name: 'Зона нечувствительности',retentive: true, value: 0, rw: true, setValueHandler: Neuron.setValueFloatHandler}),
             }}),
         };
 
 
+
         super(options);
 
-        var context = this;
 
-        options.children.pos.children.phOpn.onChange =
-            options.children.pos.children.phCls.onChange =
-                options.children.pos.newHandler(function(callers) {
-                    if (this.children.phOpn.quality === 'bad' || this.children.phCls.quality === 'bad') {
-                        this.quality = 'bad';
-                    } else {
-                        this.value = this.children.phOpn.value + 2 * this.children.phCls.value;
-                    }
-                });
 
-        options.children.pos.onChange = function(caller) {
-                if(caller.quality !== 'bad' && caller.value >= 0 && caller.value <= 4){
-                    fsm.event(['posMid','posOpn','posCls','posErr'][caller.value]);
-                }
-            };
+        /*options.children.pV.onChange =
+            options.children.sP.onChange =
+                context.newHandler(pid);
+*/
 
-        options.children.cmd.children.phOpn.onChange =
-            options.children.cmd.children.phCls.onChange =
-                options.children.cmd.newHandler(function(callers) {
-                    this.value = this.children.phOpn.value + 2 * this.children.phCls.value;
-                });
     }
+
+    init(initVal){
+        super.init(initVal);
+
+        var context = this;
+        var components = this.options.children.components.children;
+
+        var e = 0.1;
+        var t = 100;
+        var n = 10;
+
+        pid.lastTime = Date.now();
+        pid.lastDiff = 0;
+        pid.i = 0;
+        pid.lastVal = 0;
+        pid.d = 0;
+        pid.vals = [];
+
+
+
+        function pid(callers){
+            //clearTimeout(pid.timeout);
+
+            if (context.children.pV.quality !== 'good' || !(context.children.pV.value <= Number.POSITIVE_INFINITY )) {
+                context.quality = 'bad';
+            } else {
+                var now = Date.now();
+
+                var diff = (context.children.sP.value - context.children.pV.value);
+
+                var dZ = context.children.par.children.dZ.value;
+
+                var lH = context.children.par.children.lH.value;
+                var lL = context.children.par.children.lL.value;
+
+                context.children.e.value = diff;
+
+                let vals = {
+                    x: now,
+                    y: diff//,
+                    //xy: now * diff,
+                    //xx: now * now
+                };
+
+                let summs = {
+                    x: 0,
+                    y: 0,
+                    xy: 0,
+                    xx: 0
+                };
+
+                pid.vals.push(vals);
+
+                var a = 0;
+
+                if(pid.vals.length > n){
+                    pid.vals.shift();
+                    for(let i = 0; i < n; i++){
+                        let x = pid.vals[i].x - now;
+                        summs.x += x;//pid.vals[i].x;
+                        summs.y += pid.vals[i].y;
+                        summs.xx += x*x;//pid.vals[i].xx;
+                        summs.xy += x * pid.vals[i].y;//pid.vals[i].xy;
+                    }
+
+                    a = (n * summs.xy - summs.x * summs.y) / (n * summs.xx - summs.x * summs.x);
+
+                    var b = (summs.y - a * summs.x) / n;
+
+                    //diff = a * now + b;
+                    //diff = a * (- t) + b;
+                    diff = b;
+                }
+
+                pid.d = a * context.children.par.children.tD.value * 1000 * context.children.par.children.kP.value;
+
+                if(diff > dZ)
+                    diff -= dZ;
+                else if(diff < -dZ)
+                    diff += dZ;
+                else {
+                    diff = 0;
+                    pid.d = 0;
+                }
+
+                context.children.eS.value = diff;
+
+                diff *=  context.children.par.children.kP.value;
+                var p = diff;
+
+                //pid.d = a * context.children.par.children.tD.value * 1000 * context.children.par.children.kP.value;
+                //pid.d = (diff - pid.lastDiff) / Math.min(t, now - pid.lastTime) * context.children.par.children.tD.value * 1000;
+                //pid.d = (diff - pid.lastDiff) / Math.min(t, now - pid.lastTime) * context.children.par.children.tD.value * 1000;
+
+                var di = 0;
+                if(context.children.par.children.tI.value > 0) {
+                    di = pid.lastDiff * (now - pid.lastTime) / 1000 / context.children.par.children.tI.value;
+                }
+
+                pid.lastTime = now;
+                pid.lastDiff = diff;
+
+                var newVal = p + pid.i + di + pid.d;
+                if(newVal > lH) newVal = lH;
+                else if(newVal < lL) newVal = lL;
+                else pid.i += di;
+
+                //if(!(Math.abs(newVal - context.value) < e) || (pid.timeoutLimit && !callers)){
+                context.value = newVal;
+                //}
+
+
+                //pid.timeout =  setTimeout(pid, t);
+
+                components.p.value = p;
+                components.i.value = pid.i;
+                components.d.value = pid.d;
+
+            }
+
+        }
+
+        setInterval(pid, t);
+    }
+
 
     get dirname(){return __dirname}
 
-    static setValveCmdBinHandler(value, callback) {
-        var valueToSet;
-        if ((value == 0 && value != 1) || value === 'false') {
-            valueToSet = 0;
-        } else if ((value == 1 && value != 0) || value === 'true') {
-            valueToSet = 1;
-        }
-        if(typeof valueToSet != 'number') {
-            if (typeof callback === 'function')setTimeout(callback, 0, {code: 406,text: 'Incorrect value, should be 0 or 1, true or false'});
-            return;
-        }
-
-        var fsm = this.parent.parent.data.fsm;
-
-        switch (this){
-            case this.parent.children.phOpn:
-                fsm.event(valueToSet?'cmdOpn':'cmdStopOpn');
-                break;
-            case this.parent.children.phCls:
-                fsm.event(valueToSet?'cmdCls':'cmdStopCls');
-                break;
-            default:
-                if(typeof callback === 'function')setTimeout(callback, 0, {code: 500, text: 'Server error'});
-                return;
-        }
-
-        if(typeof callback === 'function')setTimeout(callback, 0);
-    }
-
-    static setValveCmdHandler(value, callback) {
-        var valueToSet;
-        if (value == 0 || value === 'Стоп') {
-            valueToSet = 0;
-        } else if (value == 1 || value === 'Открыть') {
-            valueToSet = 1;
-        } else if (value == 2 || value === 'Закрыть') {
-            valueToSet = 2;
-        }
-        if(typeof valueToSet != 'number') {
-            if (typeof callback === 'function')setTimeout(callback, 0, {code: 406,text: 'Incorrect value, should be 0,1,2, Стоп, Открыть, Закрыть'});
-            return;
-        }
-
-        var fsm = this.parent.data.fsm;
-
-        fsm.event(['cmdStop','cmdOpn','cmdCls'][valueToSet]);
-
-        if(typeof callback === 'function')setTimeout(callback, 0);
-    }
 }
 
-module.exports = Valve;
+module.exports = Pid;
 
 
