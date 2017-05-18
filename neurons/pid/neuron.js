@@ -1,3 +1,11 @@
+/*
+options:
+pV: optional, string, link to process value neuron
+t: optional, number, pid call interval in ms; if omitted or less than 50, 1000 ms will be used
+n: optional, number, error signal filtering cycles number, used for linear approximation; if omitted or less than 2, 2 will be used (no filter)
+*/
+
+
 'use strict';
 
 var Neuron = require('./../prototype/neuron.js');
@@ -34,17 +42,7 @@ class Pid extends Neuron {
             }}),
         };
 
-
-
         super(options);
-
-
-
-        /*options.children.pV.onChange =
-            options.children.sP.onChange =
-                context.newHandler(pid);
-*/
-
     }
 
     init(initVal){
@@ -53,9 +51,8 @@ class Pid extends Neuron {
         var context = this;
         var components = this.options.children.components.children;
 
-        var e = 0.1;
-        var t = 100;
-        var n = 10;
+        var t = (this.options.t >= 50)?this.options.t:1000;
+        var n = (this.options.n >= 2)?this.options.n:2;;
 
         pid.lastTime = Date.now();
         pid.lastDiff = 0;
@@ -67,7 +64,6 @@ class Pid extends Neuron {
 
 
         function pid(callers){
-            //clearTimeout(pid.timeout);
 
             if (context.children.pV.quality !== 'good' || !(context.children.pV.value <= Number.POSITIVE_INFINITY )) {
                 context.quality = 'bad';
@@ -153,19 +149,12 @@ class Pid extends Neuron {
                 else if(newVal < lL) newVal = lL;
                 else pid.i += di;
 
-                //if(!(Math.abs(newVal - context.value) < e) || (pid.timeoutLimit && !callers)){
                 context.value = newVal;
-                //}
-
-
-                //pid.timeout =  setTimeout(pid, t);
 
                 components.p.value = p;
                 components.i.value = pid.i;
                 components.d.value = pid.d;
-
             }
-
         }
 
         setInterval(pid, t);
