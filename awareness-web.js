@@ -67,7 +67,9 @@ function Web(options, node) {
     context.express.get('/neuron.json', function (req, res) {
         var neuron = node.getNeuron(req.query.path);
         if (neuron) {
-            var txt = JSON.stringify(neuron);
+            var txt = JSON.stringify(neuron/*, function(key, value) {
+                return value;
+            }*/);
             res.send(txt);
         } else {
             res.status(404)
