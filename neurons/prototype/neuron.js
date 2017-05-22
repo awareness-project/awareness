@@ -328,7 +328,7 @@ class Neuron {
 
     toJSON() { //json.stringify returns only own enumerable properties, so need this to populate some values from prototype
         var obj = Object.assign({
-            value: this.value,
+            value: (typeof this.options.fixed === 'number' && typeof this.value === 'number')?this.value.toFixed(this.options.fixed):this.value,
             quality: this.quality,
             children: this.children
         }, this);

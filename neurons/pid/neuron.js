@@ -17,20 +17,20 @@ class Pid extends Neuron {
 
         options.showState = true;
 
-        var pV = typeof options.pV === 'string' ? new Link({name:'Значение процесса', link: options.pV}) :
-            new Neuron({name:'Значение процесса', value: 0, rw:true, retentive: true, setValueHandler: Neuron.setValueFloatHandler});
+        var pV = typeof options.pV === 'string' ? new Link({name:'Значение процесса', link: options.pV, fixed: options.fixed}) :
+            new Neuron({name:'Значение процесса', value: 0, fixed: options.fixed, rw:true, retentive: true, setValueHandler: Neuron.setValueFloatHandler});
 
         var sP = new Neuron({name:'Задание', value: 0, rw:true, retentive: true, setValueHandler: Neuron.setValueFloatHandler});
 
         options.children = {
             pV: pV,
             sP: sP,
-            e: new Neuron({name:'Рассогласование'}),
-            eS: new Neuron({name:'Рассогласование фильтрованное'}),
+            e: new Neuron({name:'Рассогласование', fixed: options.fixed}),
+            eS: new Neuron({name:'Рассогласование фильтрованное', fixed: options.fixed}),
             components: new Neuron({name:'Составляющие', children: {
-                p: new Neuron({name: 'Пропорциональная'}),
-                i: new Neuron({name: 'Интегральная'}),
-                d: new Neuron({name: 'Дифференциальная'}),
+                p: new Neuron({name: 'Пропорциональная', fixed: options.fixed}),
+                i: new Neuron({name: 'Интегральная', fixed: options.fixed}),
+                d: new Neuron({name: 'Дифференциальная', fixed: options.fixed}),
             }}),
             par: new Neuron({name:'Параметры', children: {
                 lH: new Neuron({name: 'Верхний предел выхода',retentive: true, value: 100, rw: true, setValueHandler: Neuron.setValueFloatHandler}),
