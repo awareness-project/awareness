@@ -104,7 +104,7 @@ function Web(options, node) {
         var neuron = node.getNeuron(req.query.path);
         if (neuron) {
             res.sendFile(req.params[0],{root:neuron.getPubPath()}, function(err){
-                if (err) {
+                if (err && err.status) {
                     res.status(err.status).end('Cannot get /' + req.params[0]);
                 }
             });

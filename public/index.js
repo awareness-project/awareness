@@ -22,7 +22,7 @@ $(function() {
             }
 
             if(ui.newPanel.attr('id')==='tabs-face'){
-                getMnemo(currentNeuronPath, currentNeuron, window/*, function (hook) {rootHook = hook}*/);
+                getMnemo(currentNeuronPath, currentNeuron, window);
                 //mnemo.js.src='mnemo/mnemo.js?path='+currentNeuronPath;
             } else {
                 //$("#tabs-face").empty();
@@ -198,7 +198,8 @@ function getNeuron(path){
 
 
 
-function getMnemo(path, neuron, scope, callback) {
+function getMnemo(path, neuron, scope, level) {
+
     if(scope === window) {  //perform on root mnemo only
         scope.g.selectAll("*").remove();
         if(navHistory[navHistory.length - 1].transform){
@@ -206,6 +207,8 @@ function getMnemo(path, neuron, scope, callback) {
         } else {
             svg.call(zoom.transform, d3.zoomIdentity);
         }
+
+        level = 0;
     }
     hook = undefined;
 
@@ -221,9 +224,9 @@ function getMnemo(path, neuron, scope, callback) {
                 scope.g.node().appendChild(svgNode.children[0]);
             }
             scope.ancor = hmi.svg.hook();
-            var children = scope.ancor.init(path, neuron, scope.g);
+            var children = scope.ancor.init(path, neuron, scope.g, {level: level});
             $.each(children, function (id, child) {
-                getMnemo(path + (path?'/':'') + id, neuron.children[id], child);
+                getMnemo(path + (path?'/':'') + id, neuron.children[id], child, level + 1);
             });
         }
     });
