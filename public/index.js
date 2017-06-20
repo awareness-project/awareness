@@ -340,10 +340,10 @@ function reloadGraph(){
     trends.src='/grafana/dashboard-solo/db/awarenessdefault?panelId=' + panelId + '&var-metric='+metric + '&from=now-'+ timePeriod +'&to=now';
 }
 
-function goFullScreen(){
+function goFullScreen() {
     document.getElementById('tabs-face').webkitRequestFullscreen();
-    $('#dialog-form').dialog('option','appendTo','#tabs-face');
-    $('#dialog-error').dialog('option','appendTo','#tabs-face');
+    $('#dialog-form').dialog('option', 'appendTo', '#tabs-face');
+    $('#dialog-error').dialog('option', 'appendTo', '#tabs-face');
 }
 
 function cancelFullScreen(){

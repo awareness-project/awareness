@@ -22,6 +22,7 @@ module.exports = {
     EspBridge: require('./neurons/espBridge/neuron.js'),
 
     Web: require('./awareness-web.js'),
+    Telegram: require('./awareness-telegram.js'),
     MbTcpServer: require('./awareness-modbus-tcp-server.js'),
 
     reportError: function (id) {

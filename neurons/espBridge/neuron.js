@@ -8,7 +8,8 @@ class EspBridge extends Neuron {
     constructor(options) {
 
         options.children = {
-            o2: new Neuron({name: 'Выход 2', value: 0, rw: true, setValueHandler: setValueBinaryHandler})
+            o2: new Neuron({name: 'Выход 2', ch: 2, value: 0, rw: true, setValueHandler: setValueBinaryHandler}),
+            o4: new Neuron({name: 'Выход 4', ch: 4, value: 0, rw: true, setValueHandler: setValueBinaryHandler})
         };
 
         super(options);
@@ -79,14 +80,15 @@ function setValueBinaryHandler(value, callback) {
 function go() {
     var context = this;
 
-    context.data.resource.write('iw 0 2 ' + context.value, function (err, results) {
+    context.data.resource.write('iw 0 ' + this.options.ch + ' ' + context.value, function (err, results) {
         if (err) {
             context.log(0, err);
             context.data.resource.userFinished();
         } else {
             context.data.responseTimer = setTimeout(function(){context.data.resource.userFinished();}, 1000, context);
         }
-    });    }
+    });
+}
 
 function onData(data) {
     var context = this;

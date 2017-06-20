@@ -356,6 +356,19 @@ class Neuron {
         });
     }
 
+    static setMessaging(object) {
+        if(!Neuron.messaging){
+            Neuron.messaging = [];
+        }
+
+        if(typeof object.push === 'function') {
+            Neuron.messaging.push(object);
+        } else {
+            console.log(new Date().toISOString() + '  Messaging object doesn\'t have push method');
+        }
+    }
+
+
     static flushToDb() {
         console.log(new Date().toISOString() + 'FLUSHING TO DB:');
         console.log(Neuron.dbQueue);
@@ -389,6 +402,11 @@ class Neuron {
     }
 
     static flushToDbEvents() {
+        if(Array.isArray(Neuron.messaging)){
+            for(var messAgent of Neuron.messaging){
+                messAgent.push(Neuron.dbQueueEvents);
+            }
+        }
         console.log(new Date().toISOString() + 'FLUSHING TO DB:');
         console.log(Neuron.dbQueueEvents);
         Neuron.dbEndpoint.writePoints('events', Neuron.dbQueueEvents, {}, function (err, response) {
