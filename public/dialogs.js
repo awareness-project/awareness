@@ -1,9 +1,10 @@
 function initDialogs() {
-    var dialog = $("#dialog-form").dialog({
+    var dialogVal = $("#dialog-form").dialog({
         autoOpen: false,
         height: 300,
         width: 350,
         modal: true,
+        //closeOnEscape: false,
         //appendTo: "#tabs-face",
         buttons: {
             "Ввод": setValue,
@@ -12,11 +13,32 @@ function initDialogs() {
             }
         },
         open: function () {
+            /*clearTimeout(window.hackInterval);
+             window.hackInterval = setTimeout(function(){
+             if(window.hackFunction){
+             window.hackFunction();
+             window.hackFunction = undefined;
+             }
+             },10000);*/
+            //setTimeout(goFullScreen, 2000);
         },
         close: function () {
         }
-    });
-    form = dialog.find("form").on("submit", function (event) {
+    })/*.on('keydown', function(evt) {
+        if (evt.keyCode === $.ui.keyCode.ESCAPE) {
+            $(this).dialog('close');
+        }
+        evt.stopPropagation();
+    })*/;
+
+    /*$(document).bind('webkitfullscreenchange', function(e) {
+        if(!document.webkitIsFullScreen && dialogVal.dialog('isOpen')){
+            dialogVal.dialog('close');
+            window.hackFunction = function(){goFullScreen();};
+        }
+    });*/
+
+    form = dialogVal.find("form").on("submit", function (event) {
         event.preventDefault();
         setValue();
     });

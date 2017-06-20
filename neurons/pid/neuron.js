@@ -1,3 +1,11 @@
+/*
+options:
+pV: optional, string, link to process value neuron
+t: optional, number, pid call interval in ms; if omitted or less than 50, 1000 ms will be used
+n: optional, number, error signal filtering cycles number, used for linear approximation; if omitted or less than 2, 2 will be used (no filter)
+*/
+
+
 'use strict';
 
 var Neuron = require('./../prototype/neuron.js');
@@ -9,20 +17,20 @@ class Pid extends Neuron {
 
         options.showState = true;
 
-        var pV = typeof options.pV === 'string' ? new Link({name:'Значение процесса', link: options.pV}) :
-            new Neuron({name:'Значение процесса', value: 0, rw:true, retentive: true, setValueHandler: Neuron.setValueFloatHandler});
+        var pV = typeof options.pV === 'string' ? new Link({name:'Значение процесса', link: options.pV, fixed: options.fixed}) :
+            new Neuron({name:'Значение процесса', value: 0, fixed: options.fixed, rw:true, retentive: true, setValueHandler: Neuron.setValueFloatHandler});
 
         var sP = new Neuron({name:'Задание', value: 0, rw:true, retentive: true, setValueHandler: Neuron.setValueFloatHandler});
 
         options.children = {
             pV: pV,
             sP: sP,
-            e: new Neuron({name:'Рассогласование'}),
-            eS: new Neuron({name:'Рассогласование фильтрованное'}),
+            e: new Neuron({name:'Рассогласование', fixed: options.fixed}),
+            eS: new Neuron({name:'Рассогласование фильтрованное', fixed: options.fixed}),
             components: new Neuron({name:'Составляющие', children: {
-                p: new Neuron({name: 'Пропорциональная'}),
-                i: new Neuron({name: 'Интегральная'}),
-                d: new Neuron({name: 'Дифференциальная'}),
+                p: new Neuron({name: 'Пропорциональная', fixed: options.fixed}),
+                i: new Neuron({name: 'Интегральная', fixed: options.fixed}),
+                d: new Neuron({name: 'Дифференциальная', fixed: options.fixed}),
             }}),
             par: new Neuron({name:'Параметры', children: {
                 lH: new Neuron({name: 'Верхний предел выхода',retentive: true, value: 100, rw: true, setValueHandler: Neuron.setValueFloatHandler}),
@@ -34,17 +42,7 @@ class Pid extends Neuron {
             }}),
         };
 
-
-
         super(options);
-
-
-
-        /*options.children.pV.onChange =
-            options.children.sP.onChange =
-                context.newHandler(pid);
-*/
-
     }
 
     init(initVal){
@@ -53,9 +51,8 @@ class Pid extends Neuron {
         var context = this;
         var components = this.options.children.components.children;
 
-        var e = 0.1;
-        var t = 100;
-        var n = 10;
+        var t = (this.options.t >= 50)?this.options.t:1000;
+        var n = (this.options.n >= 2)?this.options.n:2;;
 
         pid.lastTime = Date.now();
         pid.lastDiff = 0;
@@ -67,7 +64,6 @@ class Pid extends Neuron {
 
 
         function pid(callers){
-            //clearTimeout(pid.timeout);
 
             if (context.children.pV.quality !== 'good' || !(context.children.pV.value <= Number.POSITIVE_INFINITY )) {
                 context.quality = 'bad';
@@ -153,19 +149,12 @@ class Pid extends Neuron {
                 else if(newVal < lL) newVal = lL;
                 else pid.i += di;
 
-                //if(!(Math.abs(newVal - context.value) < e) || (pid.timeoutLimit && !callers)){
                 context.value = newVal;
-                //}
-
-
-                //pid.timeout =  setTimeout(pid, t);
 
                 components.p.value = p;
                 components.i.value = pid.i;
                 components.d.value = pid.d;
-
             }
-
         }
 
         setInterval(pid, t);

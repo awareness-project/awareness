@@ -19,8 +19,10 @@ module.exports = {
     Ts220: require('./neurons/ts220/neuron.js'),
     Valve: require('./neurons/valve/neuron.js'),
     Pid: require('./neurons/pid/neuron.js'),
+    EspBridge: require('./neurons/espBridge/neuron.js'),
 
     Web: require('./awareness-web.js'),
+    Telegram: require('./awareness-telegram.js'),
     MbTcpServer: require('./awareness-modbus-tcp-server.js'),
 
     reportError: function (id) {
