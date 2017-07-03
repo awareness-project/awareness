@@ -7,22 +7,44 @@ class EspBridge extends Neuron {
 
     constructor(options) {
 
-        options.children = {
-            o2: new Neuron({name: 'Выход 2', ch: 2, value: 0, rw: true, setValueHandler: setValueBinaryHandler}),
-            o4: new Neuron({name: 'Выход 4', ch: 4, value: 0, rw: true, setValueHandler: setValueBinaryHandler})
-        };
+        options.children = {};
+
+        var inputs = [];
+        var outputs = [];
+
+        if(Array.isArray(options.inputs)){
+            for(let number of options.inputs){
+                if(typeof number === 'number'){
+                    var strNum = ('0' + number).slice(-2);
+                    let newNeuron = new Neuron({name: 'Вход ' + strNum, ch: number});
+                    options.children['i'+strNum] = newNeuron;
+                    inputs.push(newNeuron);
+                    newNeuron.go = goI;
+                    newNeuron.onData = onDataI;
+                    newNeuron.onError = onError;
+                }
+            }
+        }
+
+        if(Array.isArray(options.outputs)){
+            for(let number of options.outputs){
+                if(typeof number === 'number'){
+                    var strNum = ('0' + number).slice(-2);
+                    let newNeuron = new Neuron({name: 'Выход ' + strNum, ch: number, value: 0, rw: true, setValueHandler: setValueBinaryHandler});
+                    options.children['o'+strNum] = newNeuron;
+                    outputs.push(newNeuron);
+                    newNeuron.go = goO;
+                    newNeuron.onData = onDataO;
+                    newNeuron.onError = onError;
+                }
+            }
+        }
 
         super(options);
 
         var context = this;
-    }
 
-    init(initVal) {
-        super.init(initVal);
-
-        var context = this;
-
-        context.data.resource = new TcpResource('192.168.0.133', 24, function (err) {
+        context.data.resource = new TcpResource(context.options.ip, 24, function (err) {
             if (err) {
                 context.log(0, err);
             } else {
@@ -32,20 +54,24 @@ class EspBridge extends Neuron {
 
         for (var id in context.children) {
             var child = context.children[id];
-            child.go = go;
-            child.onData = onData;
-            child.onError = onError;
             child.data.resource = context.data.resource;
             child.data.resource.addUser(child);
         }
 
 
-        this.data.resource.startQueue();
+    }
+
+    init(initVal) {
+        super.init(initVal);
+
+        var context = this;
+
+        context.data.resource.startQueue();
     }
 
     go() {
         var context = this;
-        setTimeout(function(){context.data.resource.userFinished();}, 50, context);
+        setTimeout(function(){context.data.resource.userFinished();}, 100, context);
     }
 
     onData(data) {
@@ -77,7 +103,7 @@ function setValueBinaryHandler(value, callback) {
     if(typeof callback === 'function')setTimeout(callback, 0, {code: 406, text: 'Incorrect value, should be 0 or 1, true or false'});
 }
 
-function go() {
+function goO() {
     var context = this;
 
     context.data.resource.write('iw 0 ' + this.options.ch + ' ' + context.value, function (err, results) {
@@ -90,15 +116,50 @@ function go() {
     });
 }
 
-function onData(data) {
+function onDataO(data) {
     var context = this;
     clearTimeout(context.data.responseTimer);
+    context.data.resource.userFinished();
+}
+
+function goI() {
+    var context = this;
+
+    context.data.resource.write('ir 0 ' + this.options.ch, function (err, results) {
+        if (err) {
+            context.log(0, err);
+            context.data.resource.userFinished();
+            context.quality = 'bad';
+        } else {
+            context.data.responseTimer = setTimeout(function(){
+                context.data.resource.userFinished();
+                context.quality = 'bad';
+            }, 1000);
+        }
+    });
+}
+
+function onDataI(data) {
+    var context = this;
+    clearTimeout(context.data.responseTimer);
+
+    let str = data.toString();
+
+    if(str === 'inputd: [0]\n'){
+        context.value = 0;
+    } else if(str === 'inputd: [1]\n') {
+        context.value = 1;
+    } else {
+        context.quality = 'bad';
+    }
+
     context.data.resource.userFinished();
 }
 
 function onError(error) {
     var context = this;
     context.log(0, error);
-    clearTimeout(context.data.responseTimer);
-    setTimeout(function(){context.data.resource.userFinished();}, 5000);
+    //clearTimeout(context.data.responseTimer);
+
+    //setTimeout(function(){context.data.resource.userFinished();}, 5000);
 }
