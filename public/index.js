@@ -225,7 +225,16 @@ function getMnemo(path, neuron, scope, level) {
                 .getElementsByTagName("svg")[0];
             //scope.g.node().appendChild(svgNode);
             while(svgNode.children.length) {
-                scope.g.node().appendChild(svgNode.children[0]);
+                if(svgNode.children[0].nodeName === 'script'){ // reinsert script as new element for it to be executed
+                    var fixedScript = document.createElement('script');
+                    fixedScript.type = svgNode.children[0].type;
+                    fixedScript.innerHTML = svgNode.children[0].innerHTML;
+                    fixedScript.async = false;
+                    svgNode.removeChild(svgNode.children[0]);
+                    scope.g.node().appendChild(fixedScript);
+                } else {
+                    scope.g.node().appendChild(svgNode.children[0]);
+                }
             }
             scope.ancor = hmi.svg.hook();
             var children = scope.ancor.init(path, neuron, scope.g, {level: level});
