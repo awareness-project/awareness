@@ -18,6 +18,7 @@ module.exports = {
     UpsDelta: require('./neurons/upsDelta/neuron.js'),
     Ts220: require('./neurons/ts220/neuron.js'),
     Valve: require('./neurons/valve/neuron.js'),
+    Valve3x: require('./neurons/valve3x/neuron.js'),
 
     Web: require('./awareness-web.js'),
     MbTcpServer: require('./awareness-modbus-tcp-server.js'),
