@@ -35,7 +35,7 @@ var hmi = {
     svg: {
         hook : function() {
             return {
-                init: function (path, neuron, g) {
+                init: function (path, neuron, g, options) {
                     console.log(neuron);
 
                     var context = this;
@@ -47,6 +47,13 @@ var hmi = {
                         d3.event.stopPropagation();
                         getNeuron(path);
                     });
+
+                    context.g.selectAll('[data-levelMax]').filter(function(){
+                        return d3.select(this).attr('data-levelMax') < options.level;
+                    }).remove();
+                    context.g.selectAll('[data-levelMin]').filter(function(){
+                        return d3.select(this).attr('data-levelMin') > options.level;
+                    }).remove();
 
                     context.taggedStuff = context.g.selectAll('[data-tag]');
                     context.evalStuff = context.g.selectAll('[data-eval]');
