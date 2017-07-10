@@ -103,6 +103,9 @@ td {
     text-align:right;
     padding-right:2px;
 }
+.tabList li .childValue::before{
+    content: "\200B";
+}
 .tabList li .rw {
     cursor: pointer;
     font-weight: bold;
