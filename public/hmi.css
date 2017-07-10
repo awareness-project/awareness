@@ -121,3 +121,9 @@ circle[data-state='3'] {
     stroke: #7f7f7f;
     stroke-width: 1px;
 }
+.hmiLine {
+    stroke: url(#hmiLineGrad);
+
+    stroke-width: 18px;
+    stroke-linecap: round;
+}
