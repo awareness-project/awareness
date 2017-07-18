@@ -14,8 +14,8 @@
     "body-parser":"*",
     "http-proxy":"*",
     "xml2js":"*",
-    "fsm":"AutomationEngineer/fsm",
-    "tcp-resource":"AutomationEngineer/tcp-resource"
+    "fsm":"https://github.com/AutomationEngineer/fsm.git",
+    "tcp-resource":"https://github.com/AutomationEngineer/tcp-resource.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
