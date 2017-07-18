@@ -67,7 +67,9 @@ function Web(options, node) {
     context.express.get('/neuron.json', function (req, res) {
         var neuron = node.getNeuron(req.query.path);
         if (neuron) {
-            var txt = JSON.stringify(neuron);
+            var txt = JSON.stringify(neuron/*, function(key, value) {
+                return value;
+            }*/);
             res.send(txt);
         } else {
             res.status(404)
@@ -102,7 +104,7 @@ function Web(options, node) {
         var neuron = node.getNeuron(req.query.path);
         if (neuron) {
             res.sendFile(req.params[0],{root:neuron.getPubPath()}, function(err){
-                if (err) {
+                if (err && err.status) {
                     res.status(err.status).end('Cannot get /' + req.params[0]);
                 }
             });
@@ -130,7 +132,7 @@ function Web(options, node) {
     });
 
     context.express.post('/login',function(req,res) {
-        if(authUser(req.body.username, req.body.password, req, res)){
+        if(context.authUser(req.body.username, req.body.password, req, res)){
             //res.set('uName', new Buffer(req.session.user.name).toString('base64'));
             res.set('uName', encodeURIComponent(req.session.user.name));
 

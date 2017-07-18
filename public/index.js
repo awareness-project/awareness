@@ -22,7 +22,7 @@ $(function() {
             }
 
             if(ui.newPanel.attr('id')==='tabs-face'){
-                getMnemo(currentNeuronPath, currentNeuron, window/*, function (hook) {rootHook = hook}*/);
+                getMnemo(currentNeuronPath, currentNeuron, window);
                 //mnemo.js.src='mnemo/mnemo.js?path='+currentNeuronPath;
             } else {
                 //$("#tabs-face").empty();
@@ -166,7 +166,8 @@ function getNeuron(path){
             '<div class = "childUnit">' + (neuron.unit ? neuron.unit : '&nbsp') + '</div>'
         ).appendTo(li);
         tagValueElements['_'] =
-            $('<div class = "childValue' + (neuron.rw ? ' rw' : '') + '" data-id="" data-quality="'+ neuron.quality +'">' + ((neuron.value != null) ? neuron.value : '<br>') + '</div>'
+            //$('<div class = "childValue' + (neuron.rw ? ' rw' : '') + '" data-id="" data-quality="'+ neuron.quality +'">' + valOrBr(neuron.value) + '</div>'
+            $('<div class = "childValue' + (neuron.rw ? ' rw' : '') + '" data-id="" ></div>'
             ).appendTo(li);
 
 
@@ -178,7 +179,8 @@ function getNeuron(path){
                     '<div class = "childUnit">' + (child.unit ? child.unit : '&nbsp') + '</div>'
                 ).appendTo(li);
                 tagValueElements[id] =
-                    $('<div class = "childValue' + (child.rw ? ' rw' : '') + '" data-id="' + id + '" data-quality="'+ child.quality +'">' + ((child.value != null) ? child.value : '<br>') + '</div>'
+                    //$('<div class = "childValue' + (child.rw ? ' rw' : '') + '" data-id="' + id + '" data-quality="'+ child.quality +'">' + valOrBr(child.value) + '</div>'
+                    $('<div class = "childValue' + (child.rw ? ' rw' : '') + '" data-id="' + id + '"></div>'
                     ).appendTo(li);
             });
 
@@ -186,6 +188,8 @@ function getNeuron(path){
             container.append('Параметры не определены');
         }
         //getMnemo(currentNeuronPath);
+
+        updateTree(currentNeuron);
 
         reloadGraph();
 
@@ -198,7 +202,8 @@ function getNeuron(path){
 
 
 
-function getMnemo(path, neuron, scope, callback) {
+function getMnemo(path, neuron, scope, level) {
+
     if(scope === window) {  //perform on root mnemo only
         scope.g.selectAll("*").remove();
         if(navHistory[navHistory.length - 1].transform){
@@ -206,6 +211,8 @@ function getMnemo(path, neuron, scope, callback) {
         } else {
             svg.call(zoom.transform, d3.zoomIdentity);
         }
+
+        level = 0;
     }
     hook = undefined;
 
@@ -218,12 +225,21 @@ function getMnemo(path, neuron, scope, callback) {
                 .getElementsByTagName("svg")[0];
             //scope.g.node().appendChild(svgNode);
             while(svgNode.children.length) {
-                scope.g.node().appendChild(svgNode.children[0]);
+                if(svgNode.children[0].nodeName === 'script'){ // reinsert script as new element for it to be executed
+                    var fixedScript = document.createElement('script');
+                    fixedScript.type = svgNode.children[0].type;
+                    fixedScript.innerHTML = svgNode.children[0].innerHTML;
+                    fixedScript.async = false;
+                    svgNode.removeChild(svgNode.children[0]);
+                    scope.g.node().appendChild(fixedScript);
+                } else {
+                    scope.g.node().appendChild(svgNode.children[0]);
+                }
             }
             scope.ancor = hmi.svg.hook();
-            var children = scope.ancor.init(path, neuron, scope.g);
+            var children = scope.ancor.init(path, neuron, scope.g, {level: level});
             $.each(children, function (id, child) {
-                getMnemo(path + (path?'/':'') + id, neuron.children[id], child);
+                getMnemo(path + (path?'/':'') + id, neuron.children[id], child, level + 1);
             });
         }
     });
@@ -266,16 +282,16 @@ function updateTree(neuron) {
     rootElement.attr('data-quality', neuron.quality);
     if (neuron.value != undefined) {
         rootElement.attr('data-state', neuron.state ? neuron.state[0].level : 0);
-        rootElement.text((neuron.state && neuron.showState) ? neuron.state[0].text : neuron.value);
+        rootElement.html((neuron.state && neuron.showState) ? neuron.state[0].text : neuron.value);
     }
     if (neuron.children) {
         $.each(neuron.children, function (id, child) {
             childElement = tagValueElements[id];
             if(typeof childElement == 'object') {
-                childElement.text(child.value);
+                //childElement.text(child.value);
                 childElement.attr('data-quality', child.quality);
                 childElement.attr('data-state', child.state ? child.state[0].level : 0);
-                childElement.text((child.state && child.showState) ? child.state[0].text : child.value);
+                childElement.html((child.state && child.showState) ? child.state[0].text : child.value);
             }
         });
     }
@@ -337,10 +353,10 @@ function reloadGraph(){
     trends.src='/grafana/dashboard-solo/db/awarenessdefault?panelId=' + panelId + '&var-metric='+metric + '&from=now-'+ timePeriod +'&to=now';
 }
 
-function goFullScreen(){
+function goFullScreen() {
     document.getElementById('tabs-face').webkitRequestFullscreen();
-    $('#dialog-form').dialog('option','appendTo','#tabs-face');
-    $('#dialog-error').dialog('option','appendTo','#tabs-face');
+    $('#dialog-form').dialog('option', 'appendTo', '#tabs-face');
+    $('#dialog-error').dialog('option', 'appendTo', '#tabs-face');
 }
 
 function cancelFullScreen(){
@@ -357,3 +373,4 @@ function navBack(){
     }
 
 }
+

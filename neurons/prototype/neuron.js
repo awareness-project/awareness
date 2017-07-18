@@ -328,7 +328,7 @@ class Neuron {
 
     toJSON() { //json.stringify returns only own enumerable properties, so need this to populate some values from prototype
         var obj = Object.assign({
-            value: this.value,
+            value: (typeof this.options.fixed === 'number' && typeof this.value === 'number')?this.value.toFixed(this.options.fixed):this.value,
             quality: this.quality,
             children: this.children
         }, this);
@@ -355,6 +355,19 @@ class Neuron {
             failoverTimeout : 5000
         });
     }
+
+    static setMessaging(object) {
+        if(!Neuron.messaging){
+            Neuron.messaging = [];
+        }
+
+        if(typeof object.push === 'function') {
+            Neuron.messaging.push(object);
+        } else {
+            console.log(new Date().toISOString() + '  Messaging object doesn\'t have push method');
+        }
+    }
+
 
     static flushToDb() {
         console.log(new Date().toISOString() + 'FLUSHING TO DB:');
@@ -389,6 +402,11 @@ class Neuron {
     }
 
     static flushToDbEvents() {
+        if(Array.isArray(Neuron.messaging)){
+            for(var messAgent of Neuron.messaging){
+                messAgent.push(Neuron.dbQueueEvents);
+            }
+        }
         console.log(new Date().toISOString() + 'FLUSHING TO DB:');
         console.log(Neuron.dbQueueEvents);
         Neuron.dbEndpoint.writePoints('events', Neuron.dbQueueEvents, {}, function (err, response) {
