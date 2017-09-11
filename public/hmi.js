@@ -48,11 +48,9 @@ var hmi = {
                         getNeuron(path);
                     });
 
-                    context.g.selectAll('[data-levelMax]').filter(function(){
-                        return d3.select(this).attr('data-levelMax') < options.level;
-                    }).remove();
-                    context.g.selectAll('[data-levelMin]').filter(function(){
-                        return d3.select(this).attr('data-levelMin') > options.level;
+                    context.g.selectAll('[data-remove]').filter(function(){
+                        let level = options.level;
+                        return eval(d3.select(this).attr('data-remove'));
                     }).remove();
 
                     context.taggedStuff = context.g.selectAll('[data-tag]');

@@ -11,6 +11,7 @@ module.exports = {
     Mv110_16d: require('./neurons/mv110_16d/neuron.js'),
     Mu110_8: require('./neurons/mu110_8/neuron.js'),
     M230: require('./neurons/m230/neuron.js'),
+    PumpsControl: require('./neurons/pumps-control/neuron.js'),
     Dkg307: require('./neurons/dkg307/neuron.js'),
     Kvg: require('./neurons/kvg/neuron.js'),
     Weather: require('./neurons/weather/neuron.js'),

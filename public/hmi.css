@@ -38,11 +38,10 @@ circle[data-state='3'] {
     stroke: steelblue;
     stroke-width: 1px;
 }
-.hmiLamp rect,
-.hmiLamp circle{
+.hmiLamp{
     fill: #2E2E2E;
-    stroke: #ffffff;
-    stroke-width: 1px;
+    stroke: darkgrey;
+    stroke-width: 3px;
 }
 
 .hmiLampGR {
@@ -105,6 +104,18 @@ circle[data-state='3'] {
     stroke:#c0c0c0 !important;
 }
 
+.hmiPump {
+    fill: darkgrey !important;
+    stroke-width: 3px;
+    stroke:#c0c0c0 !important;
+}
+.hmiPump[data-value="1"]{
+    fill: #7aef58 !important;
+}
+.hmiPump[data-value="2"]{
+    fill: #ef7947 !important;
+}
+
 .hmiControl {
     visibility: hidden;
     opacity:0;
@@ -126,4 +137,17 @@ circle[data-state='3'] {
 
     stroke-width: 18px;
     stroke-linecap: round;
+}
+
+rect,circle {
+    stroke:#ffffff;
+    fill:none;
+}
+
+.hmiWaterPipe {
+    fill:none;
+    stroke: #00770e;
+    stroke-width: 10px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }

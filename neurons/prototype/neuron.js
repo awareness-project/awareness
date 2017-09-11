@@ -162,6 +162,14 @@ class Neuron {
         }
     }
 
+    each(func){
+        func(this);
+        for (var id in this.options.children) {
+            var child = this.options.children[id];
+            child.each(func);
+        }
+    }
+
     static setValueBinaryHandler(value, callback) {
         if ((value == 0 && value != 1) || value === 'false') {
             this.value = 0;
