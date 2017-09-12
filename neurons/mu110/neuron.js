@@ -29,22 +29,22 @@ class Mu110 extends Neuron {
 
         for(var i = 0; i < options.channels; i++){
             var strNum = ('0' + i).slice(-2);
-            var phys = new Neuron({name:'Значение на физическом выходе', value: 0, unit:'%'});
+            var phys = new Neuron({name:'Значение на физическом выходе', value: 0});
             o.push(phys);
             outs.push(0);
-            var out = options.children['o'+strNum] = new Neuron({name:'O '+strNum, value: 0, unit:'%', rw: true, setValueHandler: Neuron.setValueFloatHandler, min: 0, max: 100, children: {phys: phys}});
+            var out = options.children['o'+strNum] = new Neuron({name:'O '+strNum, value: 0, rw: true, setValueHandler: Neuron.setValueFloatHandler, min: 0, max: 1, children: {phys: phys}});
             out.data.outs = outs;
             out.data.index = i;
 
             //out.onChange = onInputsChange.bind(out);
             out.onChange = out.newHandler(function(callers){
-                if(this.value >= 100){
+                if(this.value >= 1){
                     this.data.outs[this.data.index] = 1000;
                     return;
                 }
 
                 if(this.value > 0){
-                    this.data.outs[this.data.index] = this.value * 10;
+                    this.data.outs[this.data.index] = this.value * 1000;
                     return;
                 }
 
@@ -91,20 +91,6 @@ function writeLoop(context) {
         setTimeout(function () {writeLoop(context)}, 0);
     });
 }
-
-//function onInputsChange(){
-//    if(this.value >= 1){
-//        this.data.outs[this.data.index] = 1000;
-//        return;
-//    }
-//
-//    if(this.value > 0){
-//        this.data.outs[this.data.index] = this.value * 1000;
-//        return;
-//    }
-//
-//    this.data.outs[this.data.index] = 0;
-//}
 
 
 module.exports = Mu110;
