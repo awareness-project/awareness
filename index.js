@@ -21,6 +21,7 @@ module.exports = {
     UpsDelta: require('./neurons/upsDelta/neuron.js'),
     Ts220: require('./neurons/ts220/neuron.js'),
     Ek270: require('./neurons/ek270/neuron.js'),
+    Entromatic111: require('./neurons/entromatic111/neuron.js'),
     Valve: require('./neurons/valve/neuron.js'),
     Valve3x: require('./neurons/valve3x/neuron.js'),
     Pid: require('./neurons/pid/neuron.js'),
