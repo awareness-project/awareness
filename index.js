@@ -25,6 +25,7 @@ module.exports = {
     Valve: require('./neurons/valve/neuron.js'),
     Valve3x: require('./neurons/valve3x/neuron.js'),
     Pid: require('./neurons/pid/neuron.js'),
+    GasCont: require('./neurons/gas-cont/neuron.js'),
     EspBridge: require('./neurons/espBridge/neuron.js'),
     Web: require('./awareness-web.js'),
     Telegram: require('./awareness-telegram.js'),
