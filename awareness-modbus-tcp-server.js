@@ -1,4 +1,11 @@
 'use strict';
+/*
+each neuron could have hl option which is the object with following properties:
+
+skip: //string "all" - exclude from modbus protocol neuron and all its children
+                "me" - exclude the neuron itself, but leave its children if they exist
+*/
+
 var Net = require('net');
 
 class ModbusServer {
@@ -131,18 +138,34 @@ var statusLabels = ['Без статуса', 'Информация', 'Преду
 function loopNeuron(neuron, obj, offset){
     if(!offset)offset = '';
     if(!obj)obj = {addr:0, map:[]};
-    obj.map.push(neuron);
-    console.log((400001 + obj.addr) + ':' + offset + neuron.name + (neuron.unit?('('+ neuron.unit +')'):'') + ' (чтение' + (neuron.options.rw?'/запись':'') + ')');
-    obj.addr += 2;
 
-    if(neuron.options.states){
-        for( var i = 0; i < neuron.options.states.length; i++){
-            console.log('       ' + offset.replace('├', '│').replace('└', String.fromCharCode(0x3000)) + ' '    //0x3000 = wide space
-                + neuron.options.states[i].condition.toString() + ': ('
-                + statusLabels[neuron.options.states[i].level] + ')'
-                + (neuron.options.states[i].text?' ' + neuron.options.states[i].text:''));
+    var skipMe = false;
+
+    if(typeof neuron.options.hl === 'object'){
+        if(neuron.options.hl.skip === 'all') return;
+
+        if(neuron.options.hl.skip === 'me'){
+            skipMe = true;
         }
     }
+
+    if(skipMe){
+        console.log('       ' + offset + neuron.name);
+    } else {
+        obj.map.push(neuron);
+        console.log((400001 + obj.addr) + ':' + offset + neuron.name + (neuron.unit?('('+ neuron.unit +')'):'') + ' (чтение' + (neuron.options.rw?'/запись':'') + ')');
+        obj.addr += 2;
+
+        if(neuron.options.states){
+            for( var i = 0; i < neuron.options.states.length; i++){
+                console.log('       ' + offset.replace('├', '│').replace('└', String.fromCharCode(0x3000)) + ' '    //0x3000 = wide space
+                    + neuron.options.states[i].condition.toString() + ': ('
+                    + statusLabels[neuron.options.states[i].level] + ')'
+                    + (neuron.options.states[i].text?' ' + neuron.options.states[i].text:''));
+            }
+        }
+    }
+
 
     var children = Object.keys(neuron.children),
         len = children.length,
