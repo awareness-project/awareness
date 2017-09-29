@@ -13,7 +13,7 @@
                 y="30"
                 rx="10"
                 ry="10"
-                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-state=''/>
+                style="fill: #5defe1;stroke-width:1;stroke-opacity:1" data-tag=""/>
         <text
                 x="250"
                 y="45"
