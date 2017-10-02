@@ -206,12 +206,6 @@ function getMnemo(path, neuron, scope, level) {
 
     if(scope === window) {  //perform on root mnemo only
         scope.g.selectAll("*").remove();
-        if(navHistory[navHistory.length - 1].transform){
-            svg.call(zoom.transform, navHistory[navHistory.length - 1].transform);
-        } else {
-            svg.call(zoom.transform, d3.zoomIdentity);
-        }
-
         level = 0;
     }
     hook = undefined;
@@ -224,6 +218,23 @@ function getMnemo(path, neuron, scope, level) {
             var svgNode = documentFragment
                 .getElementsByTagName("svg")[0];
             //scope.g.node().appendChild(svgNode);
+
+            if(level === 0){
+                let transform = d3.zoomIdentity;
+                if(navHistory[navHistory.length - 1].transform){
+                    transform = navHistory[navHistory.length - 1].transform;
+                } else {
+                    if(svgNode.viewBox){
+                        var box = svgNode.viewBox.baseVal;
+                        if(box.width > 0 && box.height > 0){ // if svg have different dimentions from 500x500 - position it to the center of root viewbox
+                            transform.x = 250 - (box.x + box.width)/2;
+                            transform.y = 250 - (box.y + box.height)/2;
+                        }
+                    }
+                }
+                svg.call(zoom.transform, transform);
+            }
+
             while(svgNode.children.length) {
                 if(svgNode.children[0].nodeName === 'script'){ // reinsert script as new element for it to be executed
                     var fixedScript = document.createElement('script');
