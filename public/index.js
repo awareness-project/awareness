@@ -8,6 +8,7 @@ var navHistory = [{path:''}];
 var svg;
 var g;
 var zoom;
+var zoomInitial = d3.zoomIdentity;
 //var rootHook;
 var ancor;
 //var mnemoFS
@@ -136,6 +137,44 @@ function getNeuron(path){
         if(navHistory.length > 30) navHistory.shift();
         if(navHistory[navHistory.length - 1].path !== path) navHistory.push({path: path});
 
+
+        var currentPathElement = $("#neuronPath").find('[data-path="' + path + '"]');
+        if (currentPathElement.length) {
+            currentPathElement.nextAll().remove();
+        } else {
+            currentPathElement = $("#neuronPath").children().last();
+            if(currentPathElement.length) {
+                let oldPath = currentPathElement.attr("data-path");
+                if (!oldPath) oldPath = '';
+                if (path.indexOf(oldPath) == 0) {
+                    let restPath = path.slice(oldPath.length);
+                    if(restPath.charAt(0) === '/')restPath = restPath.slice(1);// +1 trailing '/'
+                    let splitRestPath = restPath.split("/");
+                    let currentChild = currentNeuron;
+                    let currentPath = currentNeuronPath;
+                    for (let s of splitRestPath) {
+                        if ((typeof currentChild.children === 'object') && (typeof currentChild.children[s] === 'object')) {
+                            if (currentPath) {
+                                //$("#neuronPath").append('<span>/</span>');
+                                currentPath += "/";
+                            }
+                            currentPath += s;
+                            currentChild = currentChild.children[s];
+                            $("#neuronPath").append("<span>/</span><li data-path='" + currentPath + "'>" + currentChild.name + "</li>");
+                        } else {
+                            console.log('STRUCTURE ERROR');
+                            break;
+                        }
+                    }
+                }
+            } else {    //no elements in the list - add the root
+                $("#neuronPath").append("<li data-path=''>" + neuron.name + "</li>");
+            }
+        }
+
+
+
+
         currentNeuronPath = path;
         currentNeuron = neuron;
 
@@ -145,12 +184,6 @@ function getNeuron(path){
             getMnemo(currentNeuronPath, currentNeuron, window);
         }
 
-        var currentPathElement = $("#neuronPath").find('[data-path="' + path + '"]');
-        if (currentPathElement.length) {
-            currentPathElement.nextAll().remove();
-        } else {
-            $("#neuronPath").append((path ? '<span>/</span>' : '') + "<li data-path='" + currentNeuronPath + "'>" + neuron.name + "</li>");
-        }
 
         /*var items = [];
         $.each(neuron.children, function (id, child) {
@@ -221,14 +254,16 @@ function getMnemo(path, neuron, scope, level) {
 
             if(level === 0){
                 let transform = d3.zoomIdentity;
+
                 if(navHistory[navHistory.length - 1].transform){
                     transform = navHistory[navHistory.length - 1].transform;
                 } else {
                     if(svgNode.viewBox){
                         var box = svgNode.viewBox.baseVal;
                         if(box.width > 0 && box.height > 0){ // if svg have different dimentions from 500x500 - position it to the center of root viewbox
-                            transform.x = 250 - (box.x + box.width)/2;
-                            transform.y = 250 - (box.y + box.height)/2;
+                            transform = d3.zoomIdentity.translate(250 - (box.x + box.width)/2, 250 - (box.y + box.height)/2);
+                            zoomInitial = transform;
+                            navHistory[navHistory.length - 1].transform =  transform;
                         }
                     }
                 }

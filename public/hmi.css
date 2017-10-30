@@ -6,30 +6,39 @@
     opacity:0.1 !important;
 }
 
-[data-state='1'] {
+[data-state='1']
+{
     background-color: #61ef59 !important;
 }
 
-[data-state='2'] {
+[data-state='2']
+{
     background-color: #efeb52 !important;
 }
 
-[data-state='3'] {
+[data-state='3']
+{
     background-color: #ef7947 !important;
 }
 
 rect[data-state='1'],
-circle[data-state='1'] {
+circle[data-state='1'],
+[data-state='1'] .hmiLamp
+{
     fill: #61ef59 !important;
 }
 
 rect[data-state='2'],
-circle[data-state='2'] {
+circle[data-state='2'],
+[data-state='2'] .hmiLamp
+{
     fill: #efeb52 !important;
 }
 
 rect[data-state='3'],
-circle[data-state='3'] {
+circle[data-state='3'],
+[data-state='3'] .hmiLamp
+{
     fill: #ef7947 !important;
 }
 
@@ -38,7 +47,9 @@ circle[data-state='3'] {
     stroke: steelblue;
     stroke-width: 1px;
 }
-.hmiLamp{
+.hmiLamp,
+.hmiLamp *
+{
     fill: #2E2E2E;
     stroke: darkgrey;
     stroke-width: 3px;
@@ -86,23 +97,44 @@ circle[data-state='3'] {
     visibility: visible !important;
 }
 
+.hmiValve{
+    fill: darkgrey;
+    stroke-width: 3px;
+    stroke:#c0c0c0 !important;
+}
 
 .hmiValve[data-value='0']{
     fill: White !important;
-    stroke: #c0c0c0 !important;
 }
 .hmiValve[data-value='1']{
     fill: #7aef58 !important;
-    stroke: #c0c0c0 !important;
 }
 .hmiValve[data-value='2']{
     fill: #ef7947 !important;
-    stroke: #c0c0c0 !important;
 }
 .hmiValve[data-value='3']{
     fill: #000000 !important;
+}
+
+.hmiValveNo,
+.hmiValveNo *
+{
+    fill: darkgrey;
+    stroke-width: 3px;
     stroke:#c0c0c0 !important;
 }
+
+.hmiValveNo[data-value='0'],
+.hmiValveNo [data-value='0']
+{
+    fill: #7aef58 !important;
+}
+.hmiValveNo[data-value='1'],
+.hmiValveNo [data-value='1']
+{
+    fill: #ef7947 !important;
+}
+
 
 .hmiPump {
     fill: darkgrey !important;
@@ -139,6 +171,14 @@ circle[data-state='3'] {
     stroke-linecap: round;
 }
 
+.hmiShape,
+.hmiShape *
+{
+    fill: #747474;
+    stroke-width: 3px;
+    stroke:#c0c0c0 !important;
+}
+
 rect,circle {
     stroke:#ffffff;
     fill:none;
@@ -147,6 +187,14 @@ rect,circle {
 .hmiWaterPipe {
     fill:none;
     stroke: #00770e;
+    stroke-width: 10px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.hmiGasPipe {
+    fill:none;
+    stroke: #eaea00;
     stroke-width: 10px;
     stroke-linecap: round;
     stroke-linejoin: round;

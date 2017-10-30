@@ -28,7 +28,7 @@ class Entromatic111 extends Neuron {
             t: new Neuron({name: "Температура котла", unit: '°C', showState:true, states: [{condition:function(val){return Number.isNaN(val);}, level: 2, text: "Обрыв"}]}),
             tI: new Neuron({name: "Температура на входе", unit: '°C', showState:true, states: [{condition:function(val){return Number.isNaN(val);}, level: 2, text: "Обрыв"}]}),
             wH: new Neuron({name: "Время наработки", unit: 'ч'}),
-            b: new Neuron({name: "Горелка", states: [
+            b: new Neuron({name: "Горелка", showState:true, states: [
                 {condition:0, level: 0, text: "Останов"},
                 {condition:1, level: 1, text: "Работа"},
                 {condition:2, level: 3, text: "Авария"},

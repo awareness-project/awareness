@@ -65,11 +65,11 @@
         <td>
             <div id="tabs">
                 <ul>
-                    <li><a href="#tabs-info">Информация</a></li>
-                    <li><a href="#tabs-tags">Параметры</a></li>
-                    <li><a href="#tabs-face">Мнемо</a></li>
-                    <li><a href="#tabs-events">Сообщения</a></li>
-                    <li><a href="#tabs-trends">Тренды</a></li>
+                    <li><a href="#tabs-info" draggable="false">Информация</a></li>
+                    <li><a href="#tabs-tags" draggable="false">Параметры</a></li>
+                    <li><a href="#tabs-face" draggable="false">Мнемо</a></li>
+                    <li><a href="#tabs-events" draggable="false">Сообщения</a></li>
+                    <li><a href="#tabs-trends" draggable="false">Тренды</a></li>
                 </ul>
                 <div id="tabs-info">
                     Информация не задана<br>
@@ -90,7 +90,7 @@
                                 <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
                                 <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M18 3h2v4h4v2h-6v-6zm6 12v2h-4v4h-2v-6h6zm-18 6h-2v-4h-4v-2h6v6zm-6-12v-2h4v-4h2v6h-6z"/>
                             </g>
-                            <g transform="translate(0,85)" style="cursor: pointer" onclick="svg.transition().duration(1000).call(zoom.transform, d3.zoomIdentity);">
+                            <g transform="translate(0,85)" style="cursor: pointer" onclick="svg.transition().duration(1000).call(zoom.transform, zoomInitial);">
                                 <rect width="32" height="31" x="-4" y="-3" rx="5" ry="5" style="fill:#010101 ;stroke:#ffffff;stroke-width:1;stroke-opacity:1" />
                                 <path style="fill:none;stroke:#ffffff;stroke-width:1;stroke-opacity:1" d="M13 8h-8v-2h8v2zm0 4h-8v-2h8v2zm8.172 12l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"/>
                             </g>
@@ -110,6 +110,14 @@
                     </svg>
                     <svg id="face" viewBox="0 0 500 500">
                         <defs>
+                            <defs>
+                                <marker id="hmiWaterArrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 30 30">
+                                    <path d="M0,0 L0,6 L7,3 z" fill="#00770e" stroke="lime" stroke-width="0.2"/>
+                                </marker>
+                                <marker id="hmiGasArrow" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth" viewBox="0 0 30 30">
+                                    <path d="M0,0 L0,6 L7,3 z" fill="#eaea00" />
+                                </marker>
+                            </defs>
                             <linearGradient id="hmiBtnGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                                 <stop offset="0%" stop-color="#777777"/>
                                 <stop offset="50%" stop-color="#303030"/>
@@ -121,6 +129,11 @@
                                 <stop offset="50%"  stop-color="green"/>
                                 <stop offset="100%" stop-color="red"/>
                             </linearGradient>
+
+                            <filter id="smallShadow"  x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+                                <feBlend in="SourceGraphic" in2="blur" mode="normal" />
+                            </filter>
 
                             <filter id="MyFilter"  x="0" y="0" width="200%" height="200%">
                                 <feOffset result="offOut" in="SourceGraphic" dx="4" dy="4" />

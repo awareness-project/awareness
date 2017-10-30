@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <rect
+            width="500"
+            height="160"
+            x="0"
+            y="0"
+            rx="10"
+            ry="10"
+            style="fill:#9F7308;stroke:#ffffff;stroke-width:1;stroke-opacity:1"/>
+    <text
+            x="8"
+            y="20"
+            data-eval="me.text(neuron.name);"
+            style="stroke:none;fill-opacity:1;fill:#ffffff;opacity:1;">name
+    </text>
+
+    <g data-child="qS" transform="translate(5,30) scale(0.98)"/>
+    <g data-child="vS" transform="translate(5,95) scale(0.98)"/>
+</svg>
