@@ -8,7 +8,9 @@
             y="0"
             rx="10"
             ry="10"
-            style=""/>
+            style=""
+            data-eval="me.attr('height', neuron.children.p3?500:350);"
+        />
     <text
             x="8"
             y="20"

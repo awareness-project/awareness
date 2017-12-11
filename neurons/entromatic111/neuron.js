@@ -45,11 +45,14 @@ class Entromatic111 extends Neuron {
                 {condition:0, level: 0, text: "Нет"},
                 {condition:1, level: 1, text: "Вкл."},
             ]}),
+            p: new Neuron({name: "Циркуляционный насос", showState:true, states: [
+                {condition:0, level: 0, text: "Останов"},
+                {condition:1, level: 1, text: "Работа"},
+                {condition:2, level: 2, text: "Авария"},
+            ]}),
         };
 
         super(options);
-
-
     }
 
     init(initVal){
@@ -88,10 +91,13 @@ function readLoop1(context) {
 
             context.quality = 'bad';
             context.children.b.quality = 'bad';
+            context.children.p.quality = 'bad';
             context.children.tS.quality = 'bad';
+            context.children.eOn.quality = 'bad';
         } else {
             context.value = data[0]?2:(data[13]?0:1);
             context.children.b.value = data[1]?2:(data[2]?1:0);
+            context.children.p.value = data[3]?2:(data[8]?1:0);
             context.children.tS.value = data[83] * 2 + data[84];
             context.children.eOn.value = data[9];
 

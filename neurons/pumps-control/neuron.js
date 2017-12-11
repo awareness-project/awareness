@@ -34,6 +34,7 @@ class PumpControl extends Neuron {
             pO: new Neuron({name:'Давление на выходе', showState:true, states: [
                 {condition:0, level: 1, text: "Норма"},
                 {condition:1, level: 3, text: "Высокое"},
+                {condition:2, level: 2, text: "Низкое"},
             ]}),
             swT: new Neuron({name:'Интервал переключения насосов', unit: 'с', rw: true, setValueHandler: setIntervalHandler}),
             manBlk: new Neuron({name:'Блокировки в ручном режиме', showState:true, states: [
@@ -162,7 +163,7 @@ function readLoop(context) {
 
                 context.children.p.value = (data[2][6]||data[3][6])?1:0;
 
-                context.children.pO.value = (data[3][7])?1:0;
+                context.children.pO.value = (data[3][7])?1:((data[2][7]&&data[2][9]&&data[2][11])?2:0);
 
                 context.children.manBlk.value = data[1];
 

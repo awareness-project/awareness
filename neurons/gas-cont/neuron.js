@@ -15,7 +15,8 @@ class GasCont extends Neuron {
         options.states = [
             {condition:0, level:1, text: 'Норма'},
             {condition:1, level:2, text: 'I порог'},
-            {condition:2, level:3, text: 'II порог'}
+            {condition:2, level:3, text: 'II порог'},
+            {condition:3, level:2, text: 'Неисправность'}
         ];
 
         super(options);

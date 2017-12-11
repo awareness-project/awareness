@@ -1,6 +1,7 @@
 'use strict';
 
 var Neuron = require('./../prototype/neuron.js');
+var Link = require('./../link/neuron.js');
 
 class CSD extends Neuron {
 

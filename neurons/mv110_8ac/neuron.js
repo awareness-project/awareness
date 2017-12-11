@@ -42,7 +42,7 @@ class Mv110_8ac extends Neuron {
 }
 
 function readLoop(context) {
-    context.options.master.readHoldings(context.options.address, 51, schema, function (error, data) {
+    context.options.master.readHoldings(context.options.address, 0x120, schema, function (error, data) {
         if (error) {
             context.log(error, data);
 

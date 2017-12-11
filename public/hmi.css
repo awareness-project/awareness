@@ -42,11 +42,6 @@ circle[data-state='3'],
     fill: #ef7947 !important;
 }
 
-.hmiValue rect {
-    fill: darkgrey;
-    stroke: steelblue;
-    stroke-width: 1px;
-}
 .hmiLamp,
 .hmiLamp *
 {
@@ -54,6 +49,15 @@ circle[data-state='3'],
     stroke: darkgrey;
     stroke-width: 3px;
 }
+
+.hmiValue rect {
+    fill: #5defe1;
+}
+
+.hmiValue[data-set]{
+    font-weight: bold;
+}
+
 
 .hmiLampGR {
     fill: lime !important;
@@ -133,6 +137,25 @@ circle[data-state='3'],
 .hmiValveNo [data-value='1']
 {
     fill: #ef7947 !important;
+}
+
+.hmiValveNc,
+.hmiValveNc *
+{
+    fill: darkgrey;
+    stroke-width: 3px;
+    stroke:#c0c0c0 !important;
+}
+
+.hmiValveNc[data-value='0'],
+.hmiValveNc [data-value='0']
+{
+    fill: #ef7947 !important;
+}
+.hmiValveNc[data-value='1'],
+.hmiValveNc [data-value='1']
+{
+    fill: #7aef58 !important;
 }
 
 
