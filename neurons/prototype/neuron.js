@@ -215,6 +215,35 @@ class Neuron {
         if(typeof callback === 'function')setTimeout(callback, 0);
     }
 
+    static setValueIntHandler(value, callback) {
+        var val = parseInt(value, 10);
+
+        if (isNaN(val) || (val != value)) {
+            if(typeof callback === 'function')setTimeout(callback, 0, {code: 406, text: 'Incorrect value, should be an integer number'});
+            return;
+        }
+
+        if (this.options) {
+            if ((typeof this.options.max == "number") && (value > this.options.max)) {
+                if(typeof callback === 'function')setTimeout(callback, 0, {
+                    code: 406,
+                    text: 'Incorrect value, should be not more than ' + this.options.max
+                });
+                return;
+            }
+            if ((typeof this.options.min == "number") && (value < this.options.min)) {
+                if(typeof callback === 'function')setTimeout(callback, 0, {
+                    code: 406,
+                    text: 'Incorrect value, should be not less than ' + this.options.min
+                });
+                return;
+            }
+        }
+
+        this.value = val;
+        if(typeof callback === 'function')setTimeout(callback, 0);
+    }
+
     static setValuePortNumberHandler(value, callback) {
         var val = parseInt(value, 10);
         if (val > 0 && val <= 65535) {
@@ -455,7 +484,7 @@ class Neuron {
 
                         if(results[0] && results[0].series) {
                             console.log(new Date().toISOString() + '  ' + results[0].series.length + ' records fetched from short term archive');
-                            for (var i of results[0].series) {
+                            for (let i of results[0].series) {
                                 if (i.values[0].length === 2)
                                     parsedResultsShort[i.name.replace(/\./g, '/')] = i.values[0][1];
                             }
@@ -464,7 +493,7 @@ class Neuron {
                         }
                         if(results[1] && results[1].series) {
                             console.log(new Date().toISOString() + '  ' + results[1].series.length + ' records fetched from long term archive');
-                            for (var i of results[1].series) {
+                            for (let i of results[1].series) {
                                 if (i.values[0].length === 2)
                                     parsedResultsLong[i.name.replace(/\./g, '/')] = i.values[0][1];
                             }
@@ -485,7 +514,7 @@ class Neuron {
                     var initWithStart = 0;
                     Neuron.list = {};
 
-                    for(var i of Neuron.initQueue){
+                    for(let i of Neuron.initQueue){
                         var initVal = undefined;
                         neuronCount++;
                         if(i.options.retentive){
