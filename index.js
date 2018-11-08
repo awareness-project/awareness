@@ -27,6 +27,8 @@ module.exports = {
     Pid: require('./neurons/pid/neuron.js'),
     GasCont: require('./neurons/gas-cont/neuron.js'),
     EspBridge: require('./neurons/espBridge/neuron.js'),
+    Ogspgp: require('./neurons/ogspgp/neuron.js'),
+
     Web: require('./awareness-web.js'),
     Telegram: require('./awareness-telegram.js'),
     MbTcpServer: require('./awareness-modbus-tcp-server.js'),
