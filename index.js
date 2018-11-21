@@ -16,6 +16,7 @@ module.exports = {
     PumpsControl: require('./neurons/pumps-control/neuron.js'),
     Dkg307: require('./neurons/dkg307/neuron.js'),
     Kvg: require('./neurons/kvg/neuron.js'),
+    Kvg5: require('./neurons/kvg5/neuron.js'),
     Weather: require('./neurons/weather/neuron.js'),
     TCurve: require('./neurons/t-curve/neuron.js'),
     UpsDelta: require('./neurons/upsDelta/neuron.js'),
