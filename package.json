@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "serial-modbus-master": "https://github.com/awareness-project/serial-modbus-master.git",
+    "tcp-modbus-client": "https://github.com/awareness-project/tcp-modbus-client",
     "serial-m230-master": "*",
     "serial-lis200-master": "*",
     "influx": "4",
