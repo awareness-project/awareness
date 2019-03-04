@@ -1,5 +1,6 @@
 module.exports = {
     SerialModbusMaster: require('serial-modbus-master'),
+    TcpModbusClient: require('tcp-modbus-client'),
     SerialM230Master: require('serial-m230-master'),
     SerialLis200Master: require('serial-lis200-master'),
     TcpResource: require('tcp-resource'),
